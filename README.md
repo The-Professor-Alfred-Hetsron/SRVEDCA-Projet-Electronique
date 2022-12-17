@@ -30,7 +30,8 @@ SRVEDCA means Système de Reconnaissance Vocale et Empreinte Digitale pour le Co
 ### |____ Frontend (Done in ReactJS, All the presentation logic)
 
     |____Coleur de theme pour le frontend.jpeg (Frontend Color Theme)
-            |____React Folder Starter Code(To be created)
+
+    |____React Folder Starter Code(To be created)
 
 ### |____ Plannification des taches pour les congés.pdf
 
