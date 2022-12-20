@@ -5,9 +5,24 @@ SRVEDCA means Système de Reconnaissance Vocale et Empreinte Digitale pour le Co
 # To be applied
 
 - Arduino programming skills learned in this course
-- Internet Of Things (IOT) learned in this course with M. David B.
+- Internet Of Things (IOT) learned in this course with Mr David B.
 - Human Machine Interaction (HMI) skills in the presentation logic
 - API programming learned in web programming course
+
+# Figma Dashboard design
+- Check: https://www.figma.com/team_invite/redeem/TNdjdgWGaYzxtBlaqD77eR
+
+# List of equipments
+- Arduino Mega
+- Voice recognition module
+- Fingerprint module
+- RTC (Real Time Clock) Module
+- PIR module
+- Ultrasonic sensor
+- Servo Motor
+- Electric door Lock
+- TFT touch screen
+- ESP32
 
 # Repository structure and description
 
