@@ -8,11 +8,11 @@ export class NavBar extends Component {
         return (
         <nav>
             <NavLink to='/home'>Accueil</NavLink>
-            <NavLink to='/enrol'>Etudiants Enrôlés</NavLink>
-            <NavLink to='/classes'>Classes</NavLink>
-            <NavLink to='/courses'>Cours</NavLink>
+            <NavLink to='/etudiant'>Etudiants Enrôlés</NavLink>
+            <NavLink to='/classe'>Classes</NavLink>
+            <NavLink to='/cours'>Cours</NavLink>
             <NavLink to='/admin'>Administrateurs</NavLink>
-            <NavLink to='/course-planning'>Planning des cours</NavLink>
+            <NavLink to='/planning'>Planning des cours</NavLink>
             <NavLink to='/presence'>Présences</NavLink>
         </nav>
         )
