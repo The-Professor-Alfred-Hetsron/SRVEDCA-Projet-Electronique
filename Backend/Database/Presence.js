@@ -44,4 +44,5 @@ presenceSchema.methods.getCours = async function(){
     return undefined
 }
 
-module.exports = mongoose.model('Presence', presenceSchema)
+const Presence = mongoose.model('Presence', presenceSchema)
+module.exports = Presence

@@ -30,4 +30,5 @@ const adminSchema = new mongoose.Schema({
     timestamps: { createdAt: 'dateCreation', updatedAt: 'dateModification' } 
     })
 
-module.exports = mongoose.model('Admin', adminSchema)
+const Admin = mongoose.model('Admin', adminSchema)
+module.exports = Admin

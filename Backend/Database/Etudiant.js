@@ -37,4 +37,5 @@ const etudiantSchema = new mongoose.Schema({
     timestamps: { createdAt: 'dateCreation', updatedAt: 'dateModification' } 
     })
 
-module.exports = mongoose.model('Etudiant', etudiantSchema)
+const Etudiant = mongoose.model('Etudiant', etudiantSchema)
+module.exports = Etudiant

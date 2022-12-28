@@ -43,5 +43,5 @@ planningSchema.virtual('hFinNumber').get(function(){
     return toMinutes(this.heureFin)
 })
 
-
-module.exports = mongoose.model('Planning', planningSchema)
+const Planning = mongoose.model('Planning', planningSchema)
+module.exports = Planning
