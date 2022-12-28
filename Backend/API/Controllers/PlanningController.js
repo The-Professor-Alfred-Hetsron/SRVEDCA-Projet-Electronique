@@ -1,1 +1,1 @@
-const Planning = require('../Database/Planning')
+const Planning = require('../../Database/Planning')

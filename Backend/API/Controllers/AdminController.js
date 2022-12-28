@@ -1,1 +1,1 @@
-const Admin = require('../Database/Admin')
+const Admin = require('../../Database/Admin')

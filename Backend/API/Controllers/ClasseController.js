@@ -1,1 +1,1 @@
-const Classe = require('../Database/Classe')
+const Classe = require('../../Database/Classe')
