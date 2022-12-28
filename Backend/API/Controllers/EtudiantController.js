@@ -1,1 +1,1 @@
-const Etudiant = require('../Database/Etudiant')
+const Etudiant = require('../../Database/Etudiant')

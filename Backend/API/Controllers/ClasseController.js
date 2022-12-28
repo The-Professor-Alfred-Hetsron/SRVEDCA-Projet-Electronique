@@ -1,4 +1,4 @@
-const Classe = require('../Database/Classe')
+const Classe = require('../../Database/Classe')
 
 // Create an new class (Create)
 const store = (req, res, next) => {

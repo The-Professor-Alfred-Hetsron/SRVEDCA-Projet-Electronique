@@ -1,4 +1,4 @@
-const Admin = require('../Database/Admin')
+const Admin = require('../../Database/Admin')
 const bcrypt = require('./AuthController').bcrypt
 
 // Create an new admin (Create)
