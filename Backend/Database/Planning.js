@@ -25,6 +25,11 @@ const planningSchema = new mongoose.Schema({
     
 })
 
+planningSchema.virtual('jourSemaineText').get(function(){
+    const jours = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
+    return jours[this.jourSemaine - 1]
+})
+
 planningSchema.virtual('hDebut').get(function(){
     return moment(this.heureDebut).format('HH:mm')
 })

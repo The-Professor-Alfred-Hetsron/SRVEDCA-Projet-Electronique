@@ -30,7 +30,8 @@ const etudiantSchema = new mongoose.Schema({
         type: String
     },
     statut: {
-        type: Boolean //true = enrollement validé, false = enrolement en attente
+        type: Boolean, //true = enrollement validé, false = enrolement en attente
+        required: true,
     }
     
 }, { 
