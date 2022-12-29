@@ -4,6 +4,7 @@ const mongoose = reqquire('mongoose')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
+const cookieParser = require('cookie-parser');
 
 
 // Configuration des variables d'environement1
@@ -39,6 +40,7 @@ db.on('error', (err)=>{
 // Creation du serveur express
 const app = express()
 
+app.use(cookieParser);
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
