@@ -24,7 +24,8 @@ const etudiantSchema = new mongoose.Schema({
         unique: true
     },
     imageEmpreinte: {
-        type: String, //On va si nécessaire modifier ça pour mettre ObjectId ref "Image"
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Image'
     },
     voix: {
         type: String

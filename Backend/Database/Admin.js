@@ -25,6 +25,10 @@ const adminSchema = new mongoose.Schema({
         type: String,
         enum: ['admin', 'superadmin']
     },
+    photoprofil: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Image'
+    },
     
 }, { 
     timestamps: { createdAt: 'dateCreation', updatedAt: 'dateModification' } 

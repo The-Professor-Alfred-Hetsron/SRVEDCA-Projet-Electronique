@@ -1,0 +1,1 @@
+const Classe = require('../../Database/Classe')

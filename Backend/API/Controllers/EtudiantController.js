@@ -1,0 +1,1 @@
+const Etudiant = require('../../Database/Etudiant')
