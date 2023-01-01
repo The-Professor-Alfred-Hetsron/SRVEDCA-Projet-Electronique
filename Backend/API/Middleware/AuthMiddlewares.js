@@ -1,23 +1,27 @@
 const Admin = require('../Database/Admin')
 const jwt = require('jsonwebtoken')
 
-module.exports.checkAdmin = (req, res, next) {
-	const token = req.cookies.jwt;
+const secret = "SRVEDCA-Projet-Electronique";
 
-	if(token) {
-		jwt.verify(token, "SRVEDCA-Projet-Electronique", async (err, decodedToken) => {
-			if(err){
-				res.json({status:false});
-				next()
-			} else {
-				const admin = await Admin.findById(decodedToken.id);
-				if (admin) res.json({status:true, admin:admin.nom});
-				else res.json({status:false});
-				next();
-			}
-		})
-	}else{
-		res.json({status:false});
+module.exports.checkAdmin = (req, res, next) => {
+	try {
+		const token = req.headers.authorization.split(" ")[1];
+		const isCustomAuth = token.length < 500;
+	
+		let decodedData;
+	
+		if (token && isCustomAuth) {      
+		  decodedData = jwt.verify(token, secret);
+	
+		  req.userId = decodedData?.id;
+		} else {
+		  decodedData = jwt.decode(token);
+	
+		  req.userId = decodedData?.sub;
+		}    
+	
 		next();
-	}
-}
+	  } catch (error) {
+		console.log(error);
+	  }
+};

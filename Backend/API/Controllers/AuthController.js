@@ -2,75 +2,46 @@ const Admin = require('../Database/Admin')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const maxAge = 3*24*60*60;
+const secret = "SRVEDCA-Projet-Electronique";
 
-const createToken = (id) =>{
-	return jwt.sign({id},"SRVEDCA-Projet-Electronique",{
-		expiresIn: maxAge,
-	});
+module.exports.signin = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  try {
+    const oldUser = await Admin.findOne({ email });
+
+    if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
+
+    const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
+
+    if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
+
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
+
+    res.status(200).json({ result: oldUser, token });
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
 };
 
+module.exports.signup = async (req, res, next) => {
+  const { nom,email,tel, password, role } = req.body;
 
-const handleErrors = (err) => {
-	let errors = { email: "", motdepasse: ""};
+  try {
+    const oldUser = await Admin.findOne({ email });
 
-	if (err.message === "Email incorrect")
-		errors.email = "Cet email n'est pas enregistré";
+    if (oldUser) return res.status(400).json({ message: "User already exists" });
 
-	if (err.message === "Mot de passe incorrect")
-		errors.motdepasse = "Mot de passe incorrect";
+    const hashedPassword = await bcrypt.hash(password, 12);
 
+    const result = await UserModal.create({nom, email,tel, motdepasse: hashedPassword, role});
 
-	if(err.code===11000){
-		errors.email = "Email existe dejà";
-		return errors;
-	}
+    //const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
 
-	if(err.message.includes("Admin validation failed")){
-		Object.values(err.errors).forEach(({properties}) => {
-			errors[properties.path] = properties.message;
-		});
-	}
-	return errors;
-};
-
-module.exports.register = async (req, res, next) => {
-	try{
-		const { nom,email,tel, motdepasse, role} = req.body;
-		const admin = await Admin.create({
-			nom:nom,
-			email:email,
-			tel:tel,
-			motdepasse:motdepasse,
-			role:role
-		});
-		const token = createToken(admin._id);
-		res.cookie("jwt", token, {
-			withCredentials: true,
-			httpOnly: false,
-			maxAge: maxAge*1000,
-		});
-		res.status(201).json({ admin: admin._id, created:true });
-	}catch (err) {
-		console.log(err);
-		const errors = handleErrors(err);
-		res.json({ errors, created: false });
-	}
-};
-module.exports.login = async (req, res, next) => {
-	try{
-		const { email,motdepasse } = req.body;
-		const admin = await Admin.login(email, motdepasse);
-		const token = createToken(admin._id);
-		res.cookie("jwt", token, {
-			withCredentials: true,
-			httpOnly: false,
-			maxAge: maxAge*1000,
-		});
-		res.status(200).json({ admin: admin._id, created:true });
-	}catch (err) {
-		console.log(err);
-		const errors = handleErrors(err);
-		res.json({ errors, created: false });
-	}
+    res.status(201).json({ result});
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+    
+    console.log(error);
+  }
 };
