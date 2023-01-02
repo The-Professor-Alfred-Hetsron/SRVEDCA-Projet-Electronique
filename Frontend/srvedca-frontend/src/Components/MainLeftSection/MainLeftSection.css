@@ -1,0 +1,10 @@
+.mainLeftSection-container{
+    /*border: 1px solid blue;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 80%;
+    height: 100%;
+}

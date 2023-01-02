@@ -1,0 +1,11 @@
+.mainRightSection-container{
+    /*border: 1px solid violet;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 20%;
+    height: calc(inherit - 10px);
+    padding: 10px 5px;
+}

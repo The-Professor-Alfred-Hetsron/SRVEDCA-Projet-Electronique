@@ -1,0 +1,7 @@
+.navigation-container{
+    /*border: 2px solid blue;*/
+    width: 15vw;
+    height: 100vh;
+    background-color: rgba(16, 39, 84, 0.84);
+    border-radius: 0px 32px 32px 0px;
+}
