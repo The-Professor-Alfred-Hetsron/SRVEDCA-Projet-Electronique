@@ -3,11 +3,14 @@ import './NavBar.css'
 
 import {LinkLayout} from '../../Components'
 //import { NavLink } from 'react-router-dom'
+import HomeMainTextContent from '../../assets/Images/HomeMainTextContent.svg'
+
 
 export class NavBar extends Component {
     render() {
         return(
             <nav className="navigation-container">
+                <img src={HomeMainTextContent} alt="" className="navigation-container-img" />
                 <LinkLayout/>
                 <LinkLayout/>
                 <LinkLayout/>

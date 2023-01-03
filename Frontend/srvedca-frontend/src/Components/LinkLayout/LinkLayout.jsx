@@ -6,16 +6,9 @@ import { ReactComponent as DashboardHomeLink } from '../../assets/Images/Dashboa
 
 export class LinkLayout extends Component {
   render() {
-    const myLink = {
-        fill: 'white',
-        ':hover': {
-            fill: '#22AFF1'
-        },
-        ':active': {
-            fill: 'black'
-        }
-    }
+    let linkState = false
 const navLinkStyles = ({isActive}) =>{
+    linkState = isActive
     return{
         color: isActive ? 'black' : 'white',
         backgroundColor: isActive ? 'white' : 'transparent'

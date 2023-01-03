@@ -5,3 +5,8 @@
     background-color: rgba(16, 39, 84, 0.84);
     border-radius: 0px 32px 32px 0px;
 }
+
+.navigation-container-img{
+    width: 100%;
+    margin-top: 10px;
+}

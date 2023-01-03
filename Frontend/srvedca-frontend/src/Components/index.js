@@ -12,7 +12,7 @@ export { default as MainRightSection } from "./MainRightSection/MainRightSection
 export { default as MainWelcomeHeader } from "./MainWelcomeHeader/MainWelcomeHeader"
 export { default as HomeControls } from "./HomeControls/HomeControls"
 export { default as HomeControlButton } from "./HomeControlButton/HomeControlButton"
-export { default as Calendar } from "./Calendar/Calendar"
+export { default as CalendarComponent } from "./CalendarComponent/CalendarComponent"
 export { default as MainEnrolmentNotification } from "./MainEnrolmentNotification/MainEnrolmentNotification"
 export { default as EnrolementCard } from "./EnrolementCard/EnrolementCard"
 export { default as LinkLayout } from "./LinkLayout/LinkLayout"
