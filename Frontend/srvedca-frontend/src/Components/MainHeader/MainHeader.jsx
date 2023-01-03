@@ -6,10 +6,11 @@ import {PageNameHeader} from '..'
 
 export class MainHeader extends Component {
   render() {
+    const pageName = this.props.pageName
     return (
       <div className='mainTopHeader-container'>
         <ProfileHeader/>
-        <PageNameHeader/>
+        <PageNameHeader pageName={pageName}/>
       </div>
     )
   }

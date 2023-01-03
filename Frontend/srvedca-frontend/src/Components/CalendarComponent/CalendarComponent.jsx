@@ -6,7 +6,7 @@ export class CalendarComponent extends Component {
   render() {
     return (
         <div className='calendar-container'>
-          
+          Calendar Here
         </div>
     )
   }

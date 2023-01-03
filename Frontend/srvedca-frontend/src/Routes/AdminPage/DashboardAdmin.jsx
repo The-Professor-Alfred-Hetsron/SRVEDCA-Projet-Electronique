@@ -8,10 +8,11 @@ export class DashboardAdmin extends Component {
     
     render() {
         const pageType = "admin"
+        const pageName = "Administrateurs"
         return (
             <div className='dashboard-container'>
                 <NavBar page={pageType}/>
-                <PageBody page={pageType}/>
+                <PageBody page={pageType} pageName={pageName}/>
             </div>
             
         )

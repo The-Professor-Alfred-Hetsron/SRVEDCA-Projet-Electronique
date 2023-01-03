@@ -8,10 +8,11 @@ export class DashboardPlanning extends Component {
     
     render() {
         const pageType = "planning"
+        const pageName = "Planning de cours"
         return (
             <div className='dashboard-container'>
                 <NavBar page={pageType}/>
-                <PageBody page={pageType}/>
+                <PageBody page={pageType} pageName={pageName}/>
             </div>
             
         )

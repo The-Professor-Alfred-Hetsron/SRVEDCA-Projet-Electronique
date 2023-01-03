@@ -7,9 +7,10 @@ import {MainBody} from '../../Components'
 export class PageBody extends Component {
   render() {
     const page = this.props.page
+    const pageName = this.props.pageName
     return (
       <div className='pagebody-container'>
-        <MainHeader/>
+        <MainHeader pageName={pageName}/>
         <MainBody page={page}/>
       </div>
     )

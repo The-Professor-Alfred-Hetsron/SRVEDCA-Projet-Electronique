@@ -8,10 +8,11 @@ export class DashboardPresences extends Component {
     
     render() {
         const pageType = "présence"
+        const pageName = "Présences"
         return (
             <div className='dashboard-container'>
                 <NavBar page={pageType}/>
-                <PageBody page={pageType}/>
+                <PageBody page={pageType} pageName={pageName}/>
             </div>
             
         )
