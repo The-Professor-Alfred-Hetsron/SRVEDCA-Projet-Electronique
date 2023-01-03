@@ -10,3 +10,18 @@
     width: 100%;
     margin-top: 10px;
 }
+
+.navigation-list{
+    border: 1px solid red;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.navigation-item{
+    width: 100%;
+}

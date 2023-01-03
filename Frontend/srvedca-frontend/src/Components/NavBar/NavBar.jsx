@@ -11,13 +11,29 @@ export class NavBar extends Component {
         return(
             <nav className="navigation-container">
                 <img src={HomeMainTextContent} alt="" className="navigation-container-img" />
-                <LinkLayout/>
-                <LinkLayout/>
-                <LinkLayout/>
-                <LinkLayout/>
-                <LinkLayout/>
-                <LinkLayout/>
-                <LinkLayout/>
+                <ul className="navigation-list">
+                    <li className="navigation-item">
+                        <LinkLayout/>
+                    </li>
+                    <li className="navigation-item">
+                        <LinkLayout/>
+                    </li>
+                    <li className="navigation-item">
+                        <LinkLayout/>
+                    </li>
+                    <li className="navigation-item">
+                        <LinkLayout/>
+                    </li>
+                    <li className="navigation-item">
+                        <LinkLayout/>
+                    </li>
+                    <li className="navigation-item">
+                        <LinkLayout/>
+                    </li>
+                    <li className="navigation-item">
+                        <LinkLayout/>
+                    </li>
+                </ul>
 
                 {/*<nav>
             <NavLink to='/home'>Accueil</NavLink>
