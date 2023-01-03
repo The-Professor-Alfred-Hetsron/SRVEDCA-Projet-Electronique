@@ -1,0 +1,28 @@
+.linklayout-container{
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    width: calc(80% - 20px);
+    border-radius: 0px 32px 32px 0px;
+    padding: 10px 10px 10px 16px;
+}
+
+.linklayout-container:hover{
+    color: #22AFF1
+}
+
+.linklayout-container:hover + svg{
+    fill: #22AFF1
+}
+
+
+.linklayout-container:active{
+    color: black;
+    background-color: white;
+}

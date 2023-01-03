@@ -4,7 +4,9 @@ import './Calendar.css'
 export class Calendar extends Component {
   render() {
     return (
-      <div>Calendar</div>
+        <div className='calendar-container'>
+          Calendar
+        </div>
     )
   }
 }
