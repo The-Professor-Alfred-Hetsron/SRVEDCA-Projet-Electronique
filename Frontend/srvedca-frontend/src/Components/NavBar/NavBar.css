@@ -57,7 +57,7 @@
 }
 
 
-.active{
+.activelink{
     color: black;
     background-color: white;
     font-weight: bold;
@@ -72,7 +72,7 @@
     padding: 10px 10px 10px 16px;
 }
 
-.active svg path{
+.activelink svg path{
     stroke: black;
     fill: #22AFF1;
 }

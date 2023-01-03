@@ -6,10 +6,11 @@ import {NavBar} from '../../Components'
 
 export class DashboardHome extends Component {
     render() {
+        const pageType = "accueil"
         return (
-            <div className='dashboard-home-container'>
-                <NavBar/>
-                <PageBody/>
+            <div className='dashboard-container'>
+                <NavBar page={pageType}/>
+                <PageBody page={pageType}/>
             </div>
             
         )

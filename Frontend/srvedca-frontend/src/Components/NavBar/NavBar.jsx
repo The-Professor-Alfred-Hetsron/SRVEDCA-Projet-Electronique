@@ -14,66 +14,57 @@ import { ReactComponent as PresenceIcon } from '../../assets/Images/Icon5.svg'
 
 
 export class NavBar extends Component {
-    constructor(){
-        super()
-        this.state = {
-            currentLink: 1
-        }
-    }
-    setCurrentLink = (value) =>{
-        this.setState({
-            currentLink: value
-        })
-    }
     render() {
+        const currentLink = this.props.page
+
         const allLinks = [
             {
-                id: 1,
+                id: "accueil",
                 label: "Accueil",
                 path: "/accueil",
                 icon: <HomeIcon/>,
             },
             {
-                id: 2,
+                id: "etudiant",
                 label: "Etudiants Enrolés",
                 path: "/etudiant",
                 icon: <EnrolIcon/>,
             },
             {
-                id: 3,
+                id: "classe",
                 label: "Classes",
                 path: "/classe",
                 icon: <ClassIcon/>,
             },
             {
-                id: 4,
+                id: "cours",
                 label: "Cours",
                 path: "/cours",
                 icon: <CourseIcon/>,
             },
             {
-                id: 5,
+                id: "admin",
                 label: "Administrateurs",
                 path: "/admin",
                 icon: <AdminIcon/>,
             },
             {
-                id: 6,
+                id: "planning",
                 label: "Planning de cours",
                 path: "/planning",
                 icon: <PlanningIcon/>,
             },
             {
-                id: 7,
+                id: "présence",
                 label: "Présences",
-                path: "/presence",
+                path: "/présence",
                 icon: <PresenceIcon/>,
             }
         ]
 
         const NavLinks = allLinks.map((linkInfo) => 
-        <li onClick={() => this.setCurrentLink(linkInfo.id)}>
-            <NavLink className={this.state.currentLink === linkInfo.id ? "active" : "linklayout-container"} to={linkInfo.path} end>
+        <li>
+            <NavLink className={currentLink === linkInfo.id ? "activelink" : "linklayout-container"} to={linkInfo.path} end>
                 {linkInfo.icon}
                 <span>{linkInfo.label}</span>
             </NavLink>
@@ -84,16 +75,6 @@ export class NavBar extends Component {
                 <ul className="navigation-list">
                     {NavLinks}
                 </ul>
-
-                {/*<nav>
-            <NavLink to='/accueil'>Accueil</NavLink>
-            <NavLink to='/etudiant'>Etudiants Enrôlés</NavLink>
-            <NavLink to='/classe'>Classes</NavLink>
-            <NavLink to='/cours'>Cours</NavLink>
-            <NavLink to='/admin'>Administrateurs</NavLink>
-            <NavLink to='/planning'>Planning des cours</NavLink>
-        <NavLink to='/presence'>Présences</NavLink>
-        </nav>*/}
             </nav>
             
         )
