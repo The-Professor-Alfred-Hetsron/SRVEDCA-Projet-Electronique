@@ -1,9 +1,9 @@
 const Admin = require('../../Database/Admin')
-const bcrypt = require('./AuthController').bcrypt
+const bcrypt = require('bcryptjs')
 
 // Create an new admin (Create)
 const store = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10, (err, hashedPass) =>{
+    const hashedPass = bcrypt.hash(req.body.password, 10, (err) =>{
         if(err){
             res.json({
                 error: err
