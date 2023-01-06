@@ -28,7 +28,8 @@ const etudiantSchema = new mongoose.Schema({
         ref: 'Image'
     },
     voix: {
-        type: String
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Audio'
     },
     statut: {
         type: Boolean, //true = enrollement validé, false = enrolement en attente
