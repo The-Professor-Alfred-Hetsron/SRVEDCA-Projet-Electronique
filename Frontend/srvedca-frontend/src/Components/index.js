@@ -15,3 +15,4 @@ export { default as HomeControlButton } from "./HomeControlButton/HomeControlBut
 export { default as CalendarComponent } from "./CalendarComponent/CalendarComponent"
 export { default as MainEnrolmentNotification } from "./MainEnrolmentNotification/MainEnrolmentNotification"
 export { default as EnrolementCard } from "./EnrolementCard/EnrolementCard"
+export { default as ClassTable } from "./ClassTable/ClassTable"
