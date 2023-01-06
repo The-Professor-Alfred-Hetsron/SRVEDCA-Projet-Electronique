@@ -1,6 +1,6 @@
 // Importation des biblioteques
 const express = require('express')
-const mongoose = reqquire('mongoose')
+const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
@@ -44,6 +44,10 @@ app.use(cookieParser);
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+
+app.get('/', (req, res) => {
+    res.send('Electronique')
+  })
 
 const PORT = process.env.PORT || 8080
 

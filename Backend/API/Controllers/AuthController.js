@@ -1,5 +1,5 @@
-const Admin = require('../Database/Admin')
-const bcrypt = require('bcryptjs')
+const Admin = require('../models/Admin')
+const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const secret = "SRVEDCA-Projet-Electronique";
@@ -34,7 +34,7 @@ module.exports.signup = async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = await UserModal.create({nom, email,tel, motdepasse: hashedPassword, role});
+    const result = await Admin.create({nom, email,tel, motdepasse: hashedPassword, role});
 
     //const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
 

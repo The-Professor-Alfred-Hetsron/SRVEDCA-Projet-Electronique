@@ -1,1 +1,1 @@
-const Cours = require('../Database/Cours')
+const Cours = require('../models/Cours')
