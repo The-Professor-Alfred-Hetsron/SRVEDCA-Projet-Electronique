@@ -151,7 +151,7 @@ void setup() {
 
   digitalWrite(buzzer, LOW);
   
-  Serial.println(" Fingerprint Attendance System ");
+  Serial.println(" SRVEDCA Attendance System ");
   digitalWrite(ledGreen, HIGH);
   delay(500);
   digitalWrite(ledRed, HIGH);
@@ -226,6 +226,16 @@ void checkKeys(){
       }
     }
   }
+  else if(digitalRead(btnBlue) == 0){
+    Serial.println("**** Student Enrolled informations ****");
+    finger.getTemplateCount();
+    Serial.print("Number of enrolled Student: ");
+    Serial.print(finger.templateCount);
+    finger.getParameters();
+    Serial.print(" enrolled out of ");
+    Serial.println(finger.packet_len);
+    return;
+  }
 }
 
 int getNextToEnrolID(){
@@ -268,7 +278,7 @@ void auth(){
   int result=getFingerprintIDez();
   for(int i = 1; i<50; i++){
     result=getFingerprintIDez();
-    delay(500);
+    delay(50);
     if(result > 0){
       break;
     }
