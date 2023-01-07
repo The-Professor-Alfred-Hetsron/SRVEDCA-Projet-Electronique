@@ -3,6 +3,8 @@ import './MainLeftSection.css'
 
 import {MainWelcomeHeader} from '../../Components'
 import {HomeControls} from '../../Components'
+import {TableEnrolment} from '../../Components'
+import {Courses} from '../../Components'
 
 export class MainLeftSection extends Component {
   render() {
@@ -22,7 +24,7 @@ export class MainLeftSection extends Component {
         (
           <div className="mainLeftSection-container-div">
             {/*Ajoute le composant de ta table ici*/}
-            Ajoute le composant de ta table Etudiant Enrolés ici
+            <TableEnrolment/>
           </div>
         ) 
         : null}
@@ -38,7 +40,7 @@ export class MainLeftSection extends Component {
         (
           <div className="mainLeftSection-container-div">
             {/*Ajoute le composant de ta table ici*/}
-            Ajoute le composant de ta table Cours ici
+            <Courses/>
           </div>
         ) 
         : null}
