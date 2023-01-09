@@ -15,3 +15,8 @@ export { default as HomeControlButton } from "./HomeControlButton/HomeControlBut
 export { default as CalendarComponent } from "./CalendarComponent/CalendarComponent"
 export { default as MainEnrolmentNotification } from "./MainEnrolmentNotification/MainEnrolmentNotification"
 export { default as EnrolementCard } from "./EnrolementCard/EnrolementCard"
+export { default as IndexLogo} from "./IndexLogo/IndexLogo"
+export { default as IndexMiddle } from "./IndexMiddle/IndexMiddle"
+export { default as LoginLogo } from "./LoginLogo/LoginLogo"
+export { default as LoginText } from "./LoginText/LoginText"
+export { default as LoginForm} from "./LoginForm/LoginForm"

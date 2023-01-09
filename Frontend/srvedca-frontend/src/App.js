@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css';
-import { Home, Enrol, Course, Class, Admin, Planning, Presence } from './Routes'
+import { Home, Enrol, Course, Class, Admin, Planning, Presence, Index, Login } from './Routes'
 import { Routes, Route} from 'react-router-dom'
 
 
@@ -8,6 +8,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path='/' element ={<Index/>}/>
+        <Route path='/login' element ={<Login/>}/>
         <Route path='/accueil' element={<Home/>}/>
         <Route path='/etudiant' element = {<Enrol/>}/>
         <Route path='/classe' element = {<Class/>}/>
