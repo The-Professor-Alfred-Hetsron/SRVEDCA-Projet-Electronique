@@ -12,7 +12,8 @@ const adminSchema = new mongoose.Schema({
         required: true,
         minLength: 6,
         lowercase: true,
-        trim: true
+        trim: true,
+        unique: true,
     },
     tel: {
         type: String,

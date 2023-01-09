@@ -50,10 +50,10 @@ const getPresences = async (req, res, next) => {
             })
         }
 
-        res.json(presencesTab)
+        res.status(200).json(presencesTab)
 
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 
 }
@@ -65,8 +65,8 @@ const savePresence = (req, res, next) => {
         dateheure: req.body.dateheure
     })
 
-    presence.save().then(() => res.json({message: 'Présence enregistrée avec succès.'}))
-    .catch(error => res.json({message: error.message}))
+    presence.save().then(() => res.status(200).json({message: 'Présence enregistrée avec succès.'}))
+    .catch(error => res.status(400).json({message: error.message}))
 }
 
 //Enregistrer plusieurs présences
@@ -74,16 +74,16 @@ const saveManyPresences = (req, res, next) => {
     //Ici l'attribut presences de req.body est un array contenant des objets Presence
     // Presence.create(JSON.parse(req.body.presences))
     Presence.create(req.body.presences)
-    .then(() => res.json({message: 'Présences enregistrées avec succès.'}))
-    .catch(error => res.json({message: error.message}))
+    .then(() => res.status(200).json({message: 'Présences enregistrées avec succès.'}))
+    .catch(error => res.status(400).json({message: error.message}))
 }
 
 //Supprimer une présence
 const deletePresence = (req, res, next) => { 
 
     Presence.findOneAndRemove({_id: req.body.presenceId})
-    .then(() => res.json({message: 'Présence supprimée avec succès.'}))
-    .catch(error => res.json({message: error.message}))
+    .then(() => res.status(200).json({message: 'Présence supprimée avec succès.'}))
+    .catch(error => res.status(400).json({message: error.message}))
 }
 
 module.exports = {getPresences, savePresence, saveManyPresences, deletePresence}

@@ -1,4 +1,7 @@
 const Etudiant = require('../../Database/Etudiant');
+const Image = require('../../Database/Image');
+const Audio = require('../../Database/Audio');
+const Classe = require('../../Database/Classe');
 
 module.exports.getAllEtudiant = async (req, res) =>{
     const { page } = req.query;
@@ -30,9 +33,32 @@ module.exports.getEtudiantByStatus = async (req, res) => {
 
 
 module.exports.createEtudiant = async (req, res) => {
-    const etudiant = req.body;
+    //const etudiant = req.body;
 
-    const newEtudiant = new Etudiant({ ...etudiant, statut: false })
+    const etudiant = {
+        matricule: req.body.matricule,
+        nom: req.body.nom,
+        empreinte: req.body.empreinte,
+        statut: false
+    }
+
+    const imageEmpreinte = req.body.imageEmpreinte
+    const voix = req.body.voix
+
+    const audio = { nom: req.body.nom, audio: { data: voix, contentType: "audio/wav"}}
+
+    const image = { nom: req.body.nom, img: { data: imageEmpreinte, contentType: "image"}}
+
+    const classeEtudiant = await Classe.findOne({ nom: req.body.classe })
+
+    if(!(classeEtudiant instanceof Classe)) return res.status(404).send(`No Class with name : ${req.body.classe}`);
+
+    const postAudio = await Audio.create(audio);
+    if(!(postAudio instanceof Audio)) return res.status(500).send(`An error occur`);
+
+    const postImage = await Image.create(image);
+    if(!(postImage instanceof Image)) return res.status(500).send(`An error occur`);
+    const newEtudiant = new Etudiant({ ...etudiant,classe:classeEtudiant._id ,voix:postAudio._id,imageEmpreinte:postImage._id })
 
     try {
         await newEtudiant.save();

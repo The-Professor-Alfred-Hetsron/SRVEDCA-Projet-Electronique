@@ -14,7 +14,7 @@ const store = (req, res, next) => {
     })
     .catch(error => {
         res.json({
-            message:'Une erreur est survenue!'
+            message:'Une erreur est survenue!', content: error.message
         })
     })
 }
@@ -25,44 +25,53 @@ const store = (req, res, next) => {
 const showAll =(req, res, next) => {
     Classe.find()
     .then(response =>{
-        res.json({
-            response
-        })
+        res.json(response)
     })
     .catch(error => {
         res.json({
-            message:'Une erreur est survenue!'
+            message:'Une erreur est survenue!', content: error.message
         })
     })
+}
+
+// Show one class by name (Read)
+const showOne = async (req, res, next) => {
+    try {
+        let classe = await Classe.findOne({nom: req.params.nom})
+        res.json(classe)
+    } catch (error) {
+        res.json({
+            message:'Une erreur est survenue!', content: error.message
+        })
+    }
 }
 
 
 // Update a class (Update)
-const update = (req, res, next) =>{
-    let classeNom = req.body.nom
+const update = async (req, res, next) =>{
+    try {
+        let classe = await Classe.findOne({nom: req.body.nom})
+        if(!classe) throw new Error('Classe non trouvée.')
 
-    let updateData = {
-        nom: req.body.nom,
-        salle: req.body.salle
-    }
+        classe.nom = req.body.nom ? req.body.nom : classe.nom
+        classe.salle = req.body.salle ? req.body.salle : classe.salle
+        await classe.save()
 
-    Classe.findOneAndUpdate({nom:classeNom}, {$set: updateData})
-    .then(() => {
         res.json({
             message: 'Classe modifiée avec sucèss!'
         })
-    })
-    .catch(error => {
+
+    } catch (error) {
         res.json({
-            message:'Une erreur est survenue!'
+            message:'Une erreur est survenue!', content: error.message
         })
-    })
+    }
+
 }
 
 // Delete a class (Delete)
 const destroy = (req, res, next) =>{
-    let classeNom = req.params.classeNom
-    Classe.findOneAndRemove({nom:classeNom})
+    Classe.findOneAndRemove({nom: req.body.nom})
     .then(() => {
         res.json({
             message: 'Classe supprimeé avec sucèss!'
@@ -70,12 +79,12 @@ const destroy = (req, res, next) =>{
     })
     .catch(error => {
         res.json({
-            message:'Une erreur est survenue!'
+            message:'Une erreur est survenue!', content: error.message
         })
     })
 }
 
 
 module.exports = {
-    store, showAll, update, destroy
+    store, showAll, showOne, update, destroy
 }
