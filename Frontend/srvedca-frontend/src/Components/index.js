@@ -16,3 +16,4 @@ export { default as CalendarComponent } from "./CalendarComponent/CalendarCompon
 export { default as MainEnrolmentNotification } from "./MainEnrolmentNotification/MainEnrolmentNotification"
 export { default as EnrolementCard } from "./EnrolementCard/EnrolementCard"
 export { default as ClassTable } from "./ClassTable/ClassTable"
+export { default as PlanningTable } from "./PlanningTable/PlanningTable"

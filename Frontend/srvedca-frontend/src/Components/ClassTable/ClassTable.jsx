@@ -3,9 +3,28 @@ import './ClassTable.css'
 
 export class ClassTable extends Component {
   render() {
-    const salle = [
-        [ "id", "Nom", "Salle", "Actions" ]
-    ];
+    const classes = [
+        {
+            id: 1,
+            nom: "4GI",
+            salle: "B11"
+        },
+        {
+            id: 2,
+            nom: "4GELE",
+            salle: "B14"
+        }
+    ]
+
+    const classTag = classes.map((classe) => <tr>
+    <td>{classe.id}</td>
+    <td>{classe.nom}</td>
+    <td>{classe.salle}</td>
+    <td>
+        <button>modifier</button> <br></br>
+        <button>supprimer</button>
+    </td>
+</tr>)
     return (
         <div class="tableau">
             <header>
@@ -25,51 +44,7 @@ export class ClassTable extends Component {
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Akoa bijoumong</td>
-                        <td>Pr</td>
-                        <td>
-                            <button>modifier</button> <br></br>
-                            <button>supprimer</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Akoa bijoumong</td>
-                        <td>Pr</td>
-                        <td>
-                            <button>modifier</button> <br></br>
-                            <button>supprimer</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Akoa bijoumong</td>
-                        <td>Pr</td>
-                        <td>
-                            <button>modifier</button> <br></br>
-                            <button>supprimer</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Akoa bijoumong</td>
-                        <td>Pr</td>
-                        <td>
-                            <button>modifier</button> <br></br>
-                            <button>supprimer</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Akoa bijoumong</td>
-                        <td>Pr</td>
-                        <td>
-                            <button>modifier</button> <br></br>
-                            <button>supprimer</button>
-                        </td>
-                    </tr>
+                    {classTag}
                 </tbody>
 
             </table>
