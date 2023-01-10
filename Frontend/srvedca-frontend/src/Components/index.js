@@ -15,8 +15,13 @@ export { default as HomeControlButton } from "./HomeControlButton/HomeControlBut
 export { default as CalendarComponent } from "./CalendarComponent/CalendarComponent"
 export { default as MainEnrolmentNotification } from "./MainEnrolmentNotification/MainEnrolmentNotification"
 export { default as EnrolementCard } from "./EnrolementCard/EnrolementCard"
+<<<<<<< HEAD
 export { default as IndexLogo} from "./IndexLogo/IndexLogo"
 export { default as IndexMiddle } from "./IndexMiddle/IndexMiddle"
 export { default as LoginLogo } from "./LoginLogo/LoginLogo"
 export { default as LoginText } from "./LoginText/LoginText"
 export { default as LoginForm} from "./LoginForm/LoginForm"
+=======
+export { default as ClassTable } from "./ClassTable/ClassTable"
+export { default as PlanningTable } from "./PlanningTable/PlanningTable"
+>>>>>>> 488ff1e262b6bad53bdfc70d757318c8a6c0d26c
