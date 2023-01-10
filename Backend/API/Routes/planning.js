@@ -5,7 +5,7 @@ const PlanningController = require('../Controllers/PlanningController')
 
 router.post('/store', PlanningController.store)
 router.get ('/', PlanningController.showAll)
-router.post ('/update', PlanningController.update)
-router.post('/delete',PlanningController.destroy)
+router.put ('/update', PlanningController.update)
+router.delete('/delete/:id',PlanningController.destroy)
 
 module.exports = router

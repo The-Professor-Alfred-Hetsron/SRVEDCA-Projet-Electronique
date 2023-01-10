@@ -16,7 +16,7 @@ const store = (req, res, next) => {
     })
     .catch(error =>{
         res.json({
-            message : 'Une erreur est survenue !'
+            message : 'Une erreur est survenue !', content: error.message
         })
     })
 }
@@ -25,13 +25,11 @@ const store = (req, res, next) => {
 const showAll=(req, res, next) => {
     Cours.find()
     .then(response =>{
-        res.json({
-            response
-        })
+        res.json(response)
     })
     .catch(error =>{
         res.json({
-            message:'Une erreur est survenue'
+            message:'Une erreur est survenue', content: error.message
         })
     })
 }
@@ -42,13 +40,11 @@ const showByName=(req, res, next) => {
     let coursName = req.body.nom
     Cours.findOne({$where : {nom : coursName}})
     .then(response =>{
-        res.json({
-            response
-        })
+        res.json(response)
     })
     .catch(error =>{
         res.json({
-            message:'Une erreur est survenue'
+            message:'Une erreur est survenue', content: error.message
         })
     })
 }
@@ -72,7 +68,7 @@ const update = (req, res, next) => {
     })
     .catch(error => {
         res.json({
-            message : 'une erreur est survenue !'
+            message : 'une erreur est survenue !', content: error.message
         })
     })
 }
@@ -88,7 +84,7 @@ const destroy = (req, res, next) => {
     })
     .catch(error => {
         res.json({
-            message : 'Une erreur est survenue !'
+            message : 'Une erreur est survenue !', content: error.message
         })
     })
 }

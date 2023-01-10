@@ -7,3 +7,5 @@ export { default as Course } from "./CoursePage/DashboardCourse";
 export { default as Admin } from "./AdminPage/DashboardAdmin";
 export { default as Planning } from "./PlanningPage/DashboardPlanning";
 export { default as Presence } from "./PresencesPage/DashboardPresences";
+export { default as Index } from "./IndexPage/IndexPage";
+export { default as Login } from "./LoginPage/LoginPage";

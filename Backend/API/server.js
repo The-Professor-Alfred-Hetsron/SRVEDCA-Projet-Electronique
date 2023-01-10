@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
+const cors = require('cors');
 
 
 // Configuration des variables d'environement1
@@ -40,6 +41,7 @@ db.on('error', (err)=>{
 
 // Creation du serveur express
 const app = express()
+app.use(cors());
 
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: true}))
