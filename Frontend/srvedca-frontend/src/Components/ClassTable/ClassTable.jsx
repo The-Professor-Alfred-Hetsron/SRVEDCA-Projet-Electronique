@@ -26,9 +26,7 @@ const classTable = () => {
         setIsOpens(true);
     }
 
-    function afterOpenModal(){
-        subtitle.style.color = '#000'
-    }
+  
 
     function closeModal(){
         setIsOpens(false);
@@ -114,7 +112,6 @@ const classTable = () => {
             <div>
                 <Modal
                     isOpen={modalIsOpens}
-                    onAfterOpen={afterOpenModal}
                     onRequestClose={closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
