@@ -53,10 +53,104 @@ div.tableau td button{
 div.tableau td button:first-of-type{
     margin-bottom: .5em;
     background-color: #8BC5E5;
+    cursor: pointer;
 }
 div.tableau td button:nth-of-type(2){
     background-color: #f36666;
+    cursor: pointer;
 }
 div.tableau tbody tr:nth-child(even){
     background-color: #EFF4FA;
+}
+
+.modal{
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+
+.title{
+    display: inline-block;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.footer{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/*---------------------modal--------------------*/
+
+.close-btn-modal{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.form-class{
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.labelForm{
+    font-size: 20px;
+}
+
+.label-input{
+    border-radius: 5px;
+    border: 1px solid;
+    width: 100%;
+    height: 30px;
+}
+
+/*---------------------------------------------------*/
+
+.cancel-btn{
+    font-style: #f36666;
+}
+
+
+.placeholder{
+    position: absolute;
+    font-size: 13px;
+    top: 10px;
+    left: 8px;
+    padding: 0px 5px;
+    transition: 0.3s;
+    pointer-events: none;
+
+}
+
+.part1{
+    position: relative;
+}
+.input{
+    border-radius: 2px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+     
+}
+
+.formulaire{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px 20px 20px 20px;
+    
+}
+
+.title{
+
 }
