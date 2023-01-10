@@ -17,3 +17,6 @@ export { default as MainEnrolmentNotification } from "./MainEnrolmentNotificatio
 export { default as EnrolementCard } from "./EnrolementCard/EnrolementCard"
 export { default as TableEnrolment } from "./TableEnrolment/TableEnrolment"
 export { default as Courses } from "./Courses/Courses"
+export { default as TableAdmin } from "./TableAdmin/TableAdmin"
+export { default as ClassTable } from "./ClassTable/ClassTable"
+export { default as PlanningTable } from "./PlanningTable/PlanningTable"
