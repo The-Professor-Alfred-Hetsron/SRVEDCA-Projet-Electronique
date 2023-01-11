@@ -1,24 +1,23 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { useState } from 'react'
-import './PlanningTable.css'
-import CreatePlanningModal from './CreatePlanningModal'
-import UpdatePlanningModal from './UpdatePlanningModal'
-import DeletePlanningModal from './DeletePlanningModal'
+import './ClasseTable.css'
+import CreateClasseModal from './CreateClasseModal'
+import UpdateClasseModal from './UpdateClasseModal'
+import DeleteClasseModal from './DeleteClasseModal'
 import { useEffect } from 'react'
 import axios from 'axios'
 
 const API = " http://localhost:8080/api/"
-const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
 
-const PlanningTable = ()=>{
+const ClasseTable = ()=>{
 
     const [searchText, setSearchText] = useState("")
     const [TimeTable, setTimeTable] = useState([])
     
 
     const updateTable = ()=>{
-            axios.get(API + 'planning/')
+            axios.get(API + 'classe/all')
           .then(function (response) {//console.log(response.data)
             setTimeTable(response.data)
           })
@@ -35,18 +34,15 @@ const PlanningTable = ()=>{
     const TimeTableFiltered = TimeTable
     .filter((value)=>{
         if(searchText === '') return true
-        return jours[value.jourSemaine - 1].toLowerCase().includes(searchText.toLowerCase()) || 
-        value.cours.code.toLowerCase().includes(searchText.toLowerCase()) || 
-        value.cours.nom.toLowerCase().includes(searchText.toLowerCase())
+        return value.nom.toLowerCase().includes(searchText.toLowerCase()) || 
+        value.salle.toLowerCase().includes(searchText.toLowerCase())
     })
 
-    const planningTag = TimeTableFiltered
+    const classeTag = TimeTableFiltered
     .map((TimeTable, index) => <tr>
     <td>{index + 1}</td>
-    <td>{jours[TimeTable.jourSemaine - 1]}</td>
-    <td>{TimeTable.hDebut}</td>
-    <td>{TimeTable.hFin}</td>
-    <td>{TimeTable.cours.code} <br/> {TimeTable.cours.nom}</td>
+    <td>{TimeTable.nom}</td>
+    <td>{TimeTable.salle}</td>
     <td>
         <button onClick={()=>{setSelectedIndex(index); openUpdateModal();}} >modifier</button> <br></br>
         <button onClick={()=>{setSelectedIndex(index); openDeleteModal();}} >supprimer</button>
@@ -103,26 +99,24 @@ return (
             <thead>
                 <tr>
                    <th>id</th>
-                   <th>JourSemaine</th>
-                   <th>HeureDebut</th>
-                   <th>HeureFin</th>
-                   <th>UE</th>
+                   <th>Nom</th>
+                   <th>Salle</th>
                    <th>Actions</th>
                 </tr>    
             </thead>
 
             <tbody>
-                {planningTag}
+                {classeTag}
             </tbody>
 
         </table>
 
-        <CreatePlanningModal IsOpen={createModalIsOpen} afterOpen={afterOpenCreateModal} 
+        <CreateClasseModal IsOpen={createModalIsOpen} afterOpen={afterOpenCreateModal} 
         close={closeCreateModal} updateTable={updateTable} />
         
-        {selectedIndex > -1 &&   (<UpdatePlanningModal IsOpen={updateModalIsOpen} afterOpen={afterOpenUpdateModal} 
+        {selectedIndex > -1 &&   (<UpdateClasseModal IsOpen={updateModalIsOpen} afterOpen={afterOpenUpdateModal} 
         close={closeUpdateModal} updateTable={updateTable} data = {TimeTableFiltered[selectedIndex]} />)}
-        {selectedIndex > -1 &&   (<DeletePlanningModal IsOpen={deleteModalIsOpen} afterOpen={afterOpenDeleteModal} 
+        {selectedIndex > -1 &&   (<DeleteClasseModal IsOpen={deleteModalIsOpen} afterOpen={afterOpenDeleteModal} 
         close={closeDeleteModal} updateTable={updateTable} data = {TimeTableFiltered[selectedIndex]} />)}
 
     </div>
@@ -134,22 +128,18 @@ function printContent() {
     const tableContent = TimeTableFiltered
     .map((TimeTable, index) => <tr>
     <td>{index + 1}</td>
-    <td>{jours[TimeTable.jourSemaine - 1]}</td>
-    <td>{TimeTable.hDebut}</td>
-    <td>{TimeTable.hFin}</td>
-    <td>{TimeTable.cours.code} <br/> {TimeTable.cours.nom}</td>
+    <td>{TimeTable.nom}</td>
+    <td>{TimeTable.salle}</td>
 </tr>)
 
     const toPrint = (<div class="tableau">
         <table>
         <thead>
-            <tr>
-               <th>id</th>
-               <th>JourSemaine</th>
-               <th>HeureDebut</th>
-               <th>HeureFin</th>
-               <th>codeUE</th>
-            </tr>    
+                <tr>
+                   <th>id</th>
+                   <th>Nom</th>
+                   <th>Salle</th>
+                </tr>    
         </thead>
 
         <tbody>
@@ -164,7 +154,7 @@ function printContent() {
     let head = document.querySelector("head").outerHTML
     a.document.write('<html>');
     a.document.write(head);
-    a.document.write('<body ><h1>Planning des cours</h1>');
+    a.document.write('<body ><h1>Classes</h1>');
     a.document.write(renderToString(toPrint));
     a.document.write('</body></html>');
     a.document.close();
@@ -175,4 +165,4 @@ function printContent() {
 }
 
 
-export default PlanningTable
+export default ClasseTable

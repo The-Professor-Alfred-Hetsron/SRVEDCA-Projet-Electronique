@@ -10,6 +10,12 @@ div.tableau{
     gap: 1em;
     flex-grow: 1;
 }
+div.tableau .table-header{ width: 100%;
+    display: flex; justify-content: space-between;
+}
+button{
+    cursor: pointer;
+}
 div.tableau header{
     display: flex;
     align-self: stretch;
@@ -47,7 +53,7 @@ div.tableau td{
     padding: .25em 1em;
 }
 div.tableau td button{
-    min-width: 50%;
+    width: 130px;
     font-weight: bolder;
 }
 div.tableau td button:first-of-type{
