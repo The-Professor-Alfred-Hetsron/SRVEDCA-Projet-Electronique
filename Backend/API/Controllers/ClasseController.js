@@ -23,7 +23,7 @@ const store = (req, res, next) => {
 
 // Show the list of classes (Read)
 const showAll =(req, res, next) => {
-    Classe.find()
+    Classe.find().sort({nom: 1})
     .then(response =>{
         res.json(response)
     })

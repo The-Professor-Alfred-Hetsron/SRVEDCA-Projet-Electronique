@@ -11,7 +11,7 @@ const store = (req, res, next) => {
      cours.save()
      .then(response =>{
         res.json({
-            message : 'Nouveau Cour ajouté !'
+            message : 'Nouveau Cours ajouté !'
         })
     })
     .catch(error =>{

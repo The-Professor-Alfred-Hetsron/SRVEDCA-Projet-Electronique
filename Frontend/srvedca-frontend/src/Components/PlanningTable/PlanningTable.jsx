@@ -88,8 +88,8 @@ const [selectedIndex, setSelectedIndex] = useState(-1)
 
 
 return (
-    <div class="tableau">
-        <div class="table-header">
+    <div className="tableau">
+        <div className="table-header">
         <button onClick={openCreateModal} >Ajouter</button>
         <header>
             <button onClick={printContent} >Imprimer</button>
