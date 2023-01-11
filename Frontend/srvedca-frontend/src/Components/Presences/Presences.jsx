@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import "./Presences.css";
 import axios from "axios";
 import moment from "moment/moment";
-import PresencesTable from "./PresencesTable";
+import PresencesTable from "./PresencesTable"
+import { renderToString } from 'react-dom/server'
 
 const API = " http://localhost:8080/api/";
 
@@ -155,10 +156,38 @@ const Presences = () => {
         </div>
       </div>
       <div className="corps">
-        <PresencesTable tableData={TimeTable} />
+        <PresencesTable tableData={TimeTable} printContent={printContent} />
       </div>
     </div>
   );
+
+
+  function printContent() {
+    
+    const toPrint = document.querySelector('table').outerHTML
+    
+    let classeSelect = document.querySelector('#classe')
+    let classe = classeSelect.options[classeSelect.selectedIndex].text
+    let coursSelect = document.querySelector('#cours')
+    let cours = coursSelect ? coursSelect.options[coursSelect.selectedIndex].text : ''
+    let element = <div>
+      <h2>Liste des présences, classe de {classe}</h2>
+      {!allCours && <h4>Cours de {cours}</h4>}
+      {!allDates && <h4>Du {dateDebut? moment(dateDebut).format('DD/MM/YYYY') : '   ---   '} au {moment(dateFin).format('DD/MM/YYYY')}</h4>}
+    </div>
+
+    let a = window.open('', '', 'height=650, width=900');
+    let head = document.querySelector("head").outerHTML
+    a.document.write('<html>');
+    a.document.write(head);
+    a.document.write('<body>');
+    a.document.write(renderToString(element));
+    a.document.write(toPrint);
+    a.document.write('</body></html>');
+    a.document.close();
+    a.print();
+}
+
 };
 
 export default Presences;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PresencesTable = ({tableData, infoData}) => {
+const PresencesTable = ({tableData, printContent}) => {
 
     const presencesTag = tableData
     .map((data, index) => <tr>
@@ -40,23 +40,6 @@ const PresencesTable = ({tableData, infoData}) => {
         </div>
     );
 
-    function printContent() {
-    
-        const toPrint = document.querySelector('table').outerHTML
-        // let element = <div><h2>Liste des présences, classe de {infoData.classe}</h2>
-        // <span>Cours de: {infoData.cours}</span></div>
-    
-        let a = window.open('', '', 'height=650, width=900');
-        let head = document.querySelector("head").outerHTML
-        a.document.write('<html>');
-        a.document.write(head);
-        a.document.write('<body>');
-        // a.document.write('<h2>Liste des présences, classe de ' + infoData.classe + '</h2>');
-        a.document.write(toPrint);
-        a.document.write('</body></html>');
-        a.document.close();
-        a.print();
-    }
 };
 
 export default PresencesTable;

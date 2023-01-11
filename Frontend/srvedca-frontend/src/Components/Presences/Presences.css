@@ -1,8 +1,9 @@
 .entete{
-    border: 1px solid black; border-radius: 8px;
+    border: 2px solid black;
     font-size: large;
     padding: 10px;
     display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 10px;
 }
 
 .entete input, .entete select, .entete label, .entete button{
