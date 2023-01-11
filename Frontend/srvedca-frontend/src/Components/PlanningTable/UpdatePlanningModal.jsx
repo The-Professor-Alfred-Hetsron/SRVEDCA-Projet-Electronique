@@ -43,7 +43,7 @@ const UpdatePlanningModal = ({
     const [listeCours, setListeCours] = useState([])
     
     useEffect(()=>{
-        axios.get(API + 'cours/')
+        axios.get(API + 'cours/all')
       .then(function (response) {
         setListeCours(response.data)
       })

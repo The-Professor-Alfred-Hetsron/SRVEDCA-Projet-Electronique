@@ -1,9 +1,8 @@
 import React from "react";
 import Modal from "react-modal";
 import axios from 'axios'
-import './CreatePlanningModal.css'
+import './CreateCoursModal.css'
 import { useState } from "react";
-import moment from "moment/moment";
 import { useEffect } from "react";
 
 const customStyles = {
@@ -17,17 +16,13 @@ const customStyles = {
   },
 };
 
-function getDate(timeString){
-    let tab = timeString.split(':')
-    return moment({hour: Number(tab[0]), minute: Number(tab[1])}).toDate()
-}
-const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
 const API = " http://localhost:8080/api/"
+const listeSemestres = [1, 2]
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
-const CreatePlanningModal = ({
+const CreateCoursModal = ({
   IsOpen,
   afterOpen,
   close, updateTable
@@ -35,33 +30,33 @@ const CreatePlanningModal = ({
   
     const [requestOK, setRequestOK] = useState("") //Le résultat de la requête en cas de réussite
     const [requestFail, setRequestFail] = useState("") //Le résultat de la requête en cas d'échec
-    const [jourSemaine, setJourSemaine] = useState(1)
-    const [hFin, setHFin] = useState("10:00")
-    const [hDebut, setHDebut] = useState("08:00")
-    const [cours, setCours] = useState()
-    const [listeCours, setListeCours] = useState([])
+    const [code, setCode] = useState('')
+    const [nom, setNom] = useState('')
+    const [classeId, setClasseId] = useState()
+    const [listeClasses, setListeClasses] = useState([])
+    const [semestre, setSemestre] = useState(1)
     
     useEffect(()=>{
-        axios.get(API + 'cours/all')
+        axios.get(API + 'classe/all')
       .then(function (response) {
-        setListeCours(response.data)
+        setListeClasses(response.data)
+        setClasseId(response.data[0]._id); //Car la première classe est le premier élément du select
       })
       .catch(function (error) {
         console.log(error);
       })
     }, [])
 
-    const createPlanning = (e)=>{e.preventDefault()
-        axios.post(API + 'planning/store', {
-            jourSemaine: jourSemaine,
-            heureDebut: getDate(hDebut),
-            heureFin: getDate(hFin),
-            cours: cours
+    const createCours = (e)=>{e.preventDefault()
+        axios.post(API + 'cours/store', {
+            code, nom, semestre,
+            classe: classeId
           })
           .then(function (response) {
             // console.log(response);
             updateTable() //On actualise nos données
             close() //On ferme la boîte de dialogue
+            setCode(''); setNom('');
             setRequestFail('')
           })
           .catch(function (error) {
@@ -79,30 +74,30 @@ const CreatePlanningModal = ({
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2>Créer une plage pour un cours</h2>
+        <h2>Créer un cours</h2>
         
         <form className="createModal">
           <div>
-            <label htmlFor="joursemaine">Jour</label>
-            <select name="joursemaine" id="joursemaine" value={jourSemaine} onChange={(e)=>setJourSemaine(e.currentTarget.value)}>
-                {jours.map((value, index)=>
-                    <option value={index+1}>{value}</option>
+            <label htmlFor="code">Code</label>
+            <input type="text" name="code" id="code" value={code} onChange={(e)=>setCode(e.currentTarget.value)} />
+          </div>
+          <div>
+            <label htmlFor="nom">Nom</label>
+            <input type="text" name="nom" id="nom" value={nom} onChange={(e)=>setNom(e.currentTarget.value)} />
+          </div>
+          <div>
+            <label htmlFor="classe">Classe</label>
+            <select name="classe" id="classe" value={classeId} onChange={(e)=>setClasseId(e.currentTarget.value)}>
+                {listeClasses.map((value)=>
+                    <option value={value._id}>{value.nom}</option>
                 )}
             </select>
           </div>
           <div>
-            <label htmlFor="heuredebut">Heure début</label>
-            <input type="time" name="heuredebut" id="heuredebut" value={hDebut} onChange={(e)=>setHDebut(e.currentTarget.value)} />
-          </div>
-          <div>
-            <label htmlFor="heurefin">Heure fin</label>
-            <input type="time" name="heurefin" id="heurefin" value={hFin} onChange={(e)=>setHFin(e.currentTarget.value)} />
-          </div>
-          <div>
-            <label htmlFor="cours">Cours</label>
-            <select name="cours" id="cours" onChange={(e)=>setCours(e.currentTarget.value)}>
-                {listeCours.map((value)=>
-                    <option value={value._id}>{value.code + ' - ' + value.nom}</option>
+            <label htmlFor="semestre">Semestre</label>
+            <select name="semestre" id="semestre" value={semestre} onChange={(e)=>setSemestre(e.currentTarget.value)}>
+                {listeSemestres.map((value)=>
+                    <option value={value}>{value}</option>
                 )}
             </select>
           </div>
@@ -113,7 +108,7 @@ const CreatePlanningModal = ({
             {requestFail}
           </div>
           <div>
-            <button onClick={createPlanning} >Créer</button>
+            <button onClick={createCours} >Créer</button>
             <button onClick={close}>Fermer</button>
           </div>
         </form>
@@ -123,4 +118,4 @@ const CreatePlanningModal = ({
 
 };
 
-export default CreatePlanningModal;
+export default CreateCoursModal;

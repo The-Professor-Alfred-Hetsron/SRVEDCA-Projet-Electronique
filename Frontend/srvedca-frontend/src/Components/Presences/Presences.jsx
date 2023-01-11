@@ -41,10 +41,10 @@ const Presences = () => {
 
   useEffect(() => {
     axios
-      .get(API + "cours/")
+      .get(API + 'cours/all')
       .then(function(response) {
         setListeCours(response.data);
-        // setCoursId(response.data[0]._id)
+        // setCoursId(response.data[0]._id) //Ceci n'est pas bon
       })
       .catch(function(error) {
         console.log(error);
@@ -56,7 +56,7 @@ const Presences = () => {
       .get(API + "classe/all")
       .then(function(response) {
         setListeClasses(response.data);
-        setClasseId(response.data[0]._id); //Car la première classe est le premier élément du select
+        setClasseId(response.data[0]._id); //Car la première classe du tableau est le premier élément du select
       })
       .catch(function(error) {
         console.log(error);
@@ -90,7 +90,7 @@ const Presences = () => {
         >
           {listeCours
             .filter((value) => {
-              return value.classe === classeId;
+              return value.classe._id === classeId;
             })
             .map((value) => (
               <option value={value._id}>
