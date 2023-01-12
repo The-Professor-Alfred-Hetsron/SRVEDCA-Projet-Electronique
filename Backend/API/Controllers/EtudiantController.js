@@ -1,19 +1,19 @@
-const Etudiant = require('../models/Etudiant');
-const Image = require('../models/Image');
-const Audio = require('../models/Audio');
-const Classe = require('../models/Classe');
+const Etudiant = require('../../Database/Etudiant');
+const Classe = require('../../Database/Classe');
+const mongoose = require('mongoose')
 
 module.exports.getAllEtudiant = async (req, res) =>{
     const { page } = req.query;
     
     try {
-        const LIMIT = 8;
-        const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
+        //const LIMIT = 8;
+        //const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
     
-        const total = await Etudiant.countDocuments({});
-        const etudiantList = await Etudiant.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
+        //const total = await Etudiant.countDocuments({});
+        //const etudiantList = await Etudiant.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
+        const etudiantList = await Etudiant.find().populate('classe')
 
-        res.json({ data: etudiantList, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT)});
+        res.json({ etudiantList});
     } catch (error) {    
         res.status(404).json({ message: error.message });
     }
@@ -23,7 +23,7 @@ module.exports.getEtudiantByStatus = async (req, res) => {
    
 
     try {
-        const etudiants = await Etudiant.find({ statut:false });
+        const etudiants = await Etudiant.find({ statut:false }).populate('classe');
 
         res.json({ data: etudiants });
     } catch (error) {    
@@ -32,46 +32,32 @@ module.exports.getEtudiantByStatus = async (req, res) => {
 };
 
 
-module.exports.createEtudiant = async (req, res) => {
+module.exports.updateSt = async (req, res) => {
     //const etudiant = req.body;
-
-    const etudiant = {
-        matricule: req.body.matricule,
-        nom: req.body.nom,
-        empreinte: req.body.empreinte,
-        statut: false
-    }
-
-    const imageEmpreinte = req.body.imageEmpreinte
-    const voix = req.body.voix
-
-    const audio = { nom: req.body.nom, audio: { data: voix, contentType: "audio/wav"}}
-
-    const image = { nom: req.body.nom, img: { data: imageEmpreinte, contentType: "image"}}
-
-    const classeEtudiant = await Classe.findOne({ nom: req.body.classe })
+    //const {id}=req.params.id
+    const {nom, matricule,classe,id}=req.body
+    const classeEtudiant = await Classe.findOne({ nom: classe })
 
     if(!(classeEtudiant instanceof Classe)) return res.status(404).send(`No Class with name : ${req.body.classe}`);
 
-    const postAudio = await Audio.create(audio);
-    if(!(postAudio instanceof Audio)) return res.status(500).send(`An error occur`);
-
-    const postImage = await Image.create(image);
-    if(!(postImage instanceof Image)) return res.status(500).send(`An error occur`);
-    const newEtudiant = new Etudiant({ ...etudiant,classe:classeEtudiant._id ,voix:postAudio._id,imageEmpreinte:postImage._id })
+   const student = {
+    nom: nom,
+    matricule:matricule,
+    classe:classeEtudiant._id
+   }
 
     try {
-        await newEtudiant.save();
+        await Etudiant.findByIdAndUpdate (id, {$set : student});
 
-        res.status(201).json(newEtudiant);
+        res.status(201).json({message:"modifié avec succès"});
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
 };
 
 
-module.exports.updateEtudiant = async (req, res) => {
-    const { id } = req.params;
+module.exports.validated = async (req, res) => {
+    const { id } = req.body;
   
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Student with id: ${id}`);
 
@@ -111,10 +97,9 @@ module.exports.updateAllEtudiant = async (req, res) => {
 
 
 module.exports.deleteEtudiant  = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.body;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No student with id: ${id}`);
-
+    //if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No student with id: ${id}`);
     try {
         await Etudiant.findByIdAndRemove(id);
 

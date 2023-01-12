@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
-const cookieParser = require('cookie-parser');
+const cors =  require('cors');
+
 
 
 // Configuration des variables d'environement1
@@ -25,6 +26,8 @@ const PresenceRoute = require('./Routes/presence')
 // Connexion a la BD
 const DBURL = process.env.DBURL || 'mongodb://localhost:27017/srvedcaDB'
 
+mongoose.set('strictQuery', true)
+
 mongoose.connect(DBURL, {useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection
 
@@ -40,14 +43,11 @@ db.on('error', (err)=>{
 // Creation du serveur express
 const app = express()
 
-app.use(cookieParser);
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Electronique')
-  })
 
 const PORT = process.env.PORT || 8080
 

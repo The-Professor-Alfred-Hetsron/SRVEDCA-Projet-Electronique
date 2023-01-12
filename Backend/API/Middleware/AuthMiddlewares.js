@@ -1,4 +1,4 @@
-const Admin = require('../models/Admin')
+const Admin = require('../../Database/Admin')
 const jwt = require('jsonwebtoken')
 
 const secret = "SRVEDCA-Projet-Electronique";
