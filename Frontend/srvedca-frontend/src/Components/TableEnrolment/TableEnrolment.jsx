@@ -11,6 +11,7 @@ import Modal from 'react-modal';
 import ReactJsAlert from "reactjs-alert";
 import { GrFormClose } from "react-icons/gr";
 import axios from 'axios'
+import moment from 'moment/moment';
 
 const TableEnrolment = () => {
 
@@ -187,7 +188,7 @@ const TableEnrolment = () => {
             <td>{student.classe.nom}</td>
             <td>{student.empreinte}</td>
             <td><img src={Empreinte} alt="" /></td>
-            <td>{student.dateCreation}</td>
+            <td>{moment(student.dateCreation).format('DD/MM/YYYY à HH:mm:ss')}</td>
             <td><span className={student.statut === true ? "valide" : "attente"}>{student.statut==true ?"Validé":"En attente"}</span></td>
             <td>
                 <button onClick={()=>openModal(student._id)} className='button-modifier'><img src={Modifier} alt="modifier" />Modifier</button>

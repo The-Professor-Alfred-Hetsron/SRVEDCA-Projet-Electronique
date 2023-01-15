@@ -1,6 +1,7 @@
 const Etudiant = require('../../Database/Etudiant');
 const Classe = require('../../Database/Classe');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const moment = require('moment/moment');
 
 module.exports.getAllEtudiant = async (req, res) =>{
     const { page } = req.query;
@@ -11,7 +12,7 @@ module.exports.getAllEtudiant = async (req, res) =>{
     
         //const total = await Etudiant.countDocuments({});
         //const etudiantList = await Etudiant.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
-        const etudiantList = await Etudiant.find().populate('classe')
+        const etudiantList = await Etudiant.find().sort({dateCreation: -1}).populate('classe')
 
         res.json({ etudiantList});
     } catch (error) {    
@@ -40,6 +41,7 @@ module.exports.createEtudiant = async (req, res) => {
         matricule:req.body.matricule,
         nom: req.body.nom,
         classe:classEt._id,
+        empreinte: req.body.empreinte ? req.body.empreinte : moment().unix(),
         statut:false
     })
 
