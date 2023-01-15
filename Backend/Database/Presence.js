@@ -14,7 +14,6 @@ const presenceSchema = new mongoose.Schema({
 
     dateheure: {
         type: Date,
-        required: true,
         default: () => Date.now()
     }
     

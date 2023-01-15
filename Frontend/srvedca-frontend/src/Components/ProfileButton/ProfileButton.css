@@ -21,6 +21,17 @@
     width: 60px;
     height: 60px;
     border-radius: 100%;
+    background-color: blue;
+}
+
+.profileButton-container-img span {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: aliceblue;
+    position: absolute;
+    padding-left: 20px;
+    padding-top: 10px;
 }
 
 .profileButton-container-span {

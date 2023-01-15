@@ -1,26 +1,62 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import "./LoginForm.css"
-import { NavLink } from 'react-router-dom'
+import axios from "axios"
 
-export class LoginForm extends Component {
-  render() {
-    return (
-      <form className='cover' method='post'>
-        <h1>Connexion</h1>
-        <div className='input-group'>
-            <input type="text" class="input" placeholder=" "/>
-            <label class="placeholder"> Email</label>
-        </div>
-        <div className='input-group'>
-            <input type="password" class='input' placeholder=" "/>
-            <label class="placeholder">Mot de passe</label>
-        </div>
-        <NavLink className="connect-login" to="/accueil" end>
-            <input type="submit" className='loginButton' value="Se Connecter"/>
-        </NavLink>
-      </form>
-    )
-  }
-}
+
+
+const initialState = { email: '', motdepasse: ''};
+const LoginForm = () => {
+
+ if (localStorage.getItem("token")) window.location = "accueil/";
+  const [form, setForm] = useState(initialState);
+  const [requestFail, setRequestFail] = useState("");
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const url = "http://localhost:8080/api/auth/login";
+    localStorage.clear();
+
+    await axios.post(url, form).then((response) => {
+      
+      localStorage.setItem("user",JSON.stringify(response.data.result));
+      localStorage.setItem("token", response.data.token)
+    
+      window.location = "accueil/";
+    }).catch(error => {
+      
+      setRequestFail("Identifiants invalides")
+    })
+
+
+  };
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  return (
+    
+    <form className='cover' method='post' onSubmit={handleSubmit} >
+      <h1>Connexion</h1>
+      <div className='input-group'>
+          <input name="email" type="text" class="input" placeholder=" " onChange={handleChange} />
+          <label class="placeholder"> Email</label>
+      </div>
+      <div className='input-group'>
+          <input name="motdepasse" type="password" class='input' placeholder=" " onChange={handleChange}/>
+          <label class="placeholder">Mot de passe</label>
+      </div>
+      <div className="fail">
+        {requestFail}
+      </div>
+      
+          <input type="submit" className='loginButton' value="Se Connecter"/>
+      
+    </form>
+ 
+    
+  )
+};
 
 export default LoginForm

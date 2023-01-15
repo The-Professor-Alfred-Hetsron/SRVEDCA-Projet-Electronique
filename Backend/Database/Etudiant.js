@@ -20,8 +20,8 @@ const etudiantSchema = new mongoose.Schema({
     },
     empreinte: {
         type: String,
-        required: true,
-        unique: true
+        // required: true,
+        // unique: true
     },
     imageEmpreinte: {
         type: mongoose.SchemaTypes.ObjectId,

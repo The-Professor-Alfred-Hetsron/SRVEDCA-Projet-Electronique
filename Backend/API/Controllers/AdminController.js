@@ -71,7 +71,7 @@ const update = async (req, res, next) =>{
         await result.save()
 
         res.status(200).json({
-            message: 'Administrateur modifié avec sucèss!'
+            result
         })
     } catch (error) {
         res.status(400).json({
@@ -82,7 +82,7 @@ const update = async (req, res, next) =>{
 
 // Delete an admin (Delete)
 const destroy = (req, res, next) =>{
-    let adminID = req.body.id
+    let adminID = req.params.id
     Admin.findByIdAndRemove(adminID)
     .then(() => {
         res.status(200).json({

@@ -1,11 +1,12 @@
 const Classe = require('../../Database/Classe')
 const Presence = require('../../Database/Presence')
+const Etudiant = require('../../Database/Etudiant')
 const moment = require('moment')
 
 //Obtenir des présences
 const getPresences = async (req, res, next) => {
     try {
-        const presences = await Presence.find().sort({dateheure: 1}).populate('etudiant').exec()
+        const presences = await Presence.find().sort({dateheure: -1}).populate('etudiant').exec()
         let presencesTab = []
         let classeId = req.body.classeId, coursId = req.body.coursId,
         dateDebut = req.body.dateDebut, dateFin = req.body.dateFin //intervalle des dates
@@ -46,7 +47,7 @@ const getPresences = async (req, res, next) => {
 
         if(dateFin){dateFin = moment(dateFin).unix()
             presencesTab = presencesTab.filter((presence) => {
-                return dateFin >= moment(presence.dateheure).unix()
+                return dateFin + 86400 > moment(presence.dateheure).unix()
             })
         }
 
@@ -69,6 +70,25 @@ const savePresence = (req, res, next) => {
     .catch(error => res.status(400).json({message: error.message}))
 }
 
+//Enregistrer une présence sur la base du matricule de l'étudiant
+const savePresenceByMatricule = async (req, res, next) => {
+    try {
+        const {matricule, dateheure} = req.body
+        const etudiant = await Etudiant.findOne().where({matricule: matricule})
+        if(!etudiant) throw new Error("L'étudiant de matricule " + matricule + "n'existe pas.")
+
+        let presence = new Presence({
+            etudiant: etudiant._id,
+            dateheure: dateheure
+        })
+
+        await presence.save()
+        res.status(200).json({message: 'Présence enregistrée avec succès.'})
+    } catch (error) {
+        res.status(400).json({message: error.message})
+    }
+}
+
 //Enregistrer plusieurs présences
 const saveManyPresences = (req, res, next) => {
     //Ici l'attribut presences de req.body est un array contenant des objets Presence
@@ -86,4 +106,4 @@ const deletePresence = (req, res, next) => {
     .catch(error => res.status(400).json({message: error.message}))
 }
 
-module.exports = {getPresences, savePresence, saveManyPresences, deletePresence}
+module.exports = {getPresences, savePresence, savePresenceByMatricule, saveManyPresences, deletePresence}

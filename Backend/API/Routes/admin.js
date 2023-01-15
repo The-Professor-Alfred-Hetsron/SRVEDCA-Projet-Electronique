@@ -7,6 +7,6 @@ router.post('/store', AdminController.store)
 router.get('/all', AdminController.showAll)
 router.get('/:id', AdminController.showById)
 router.put('/update', AdminController.update)
-router.delete('/destroy', AdminController.destroy)
+router.delete('/destroy/:id', AdminController.destroy)
 
 module.exports = router

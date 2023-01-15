@@ -2,8 +2,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    /* width: 25%; */
-    width: 400px;
+    width: 25%;
     height: 40vh;
     align-items: center;
     justify-content: space-around;
@@ -12,10 +11,6 @@
     border-radius: 20px 20px 20px 20px;
     position: fixed;
     box-shadow: 0 6px 10px 4px rgba(0,0,0,0.15);
-}
-
-.cover h1{
-    margin: 10px 0px;
 }
 
 
@@ -40,7 +35,7 @@
     
 }
 .input-group{
-    position: relative; width: 80%;
+    position: relative;
 }
 .input{
     border-radius: 2px;
@@ -77,4 +72,8 @@
 .connect-login{
     text-decoration: none;
     background-color: white;
+}
+
+.fail {
+    color: red;
 }

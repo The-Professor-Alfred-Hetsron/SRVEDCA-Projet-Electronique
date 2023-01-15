@@ -6,6 +6,7 @@ const secret = "SRVEDCA-Projet-Electronique";
 
 module.exports.signin = async (req, res, next) => {
   const { email, motdepasse } = req.body;
+  
 
   try {
     const oldUser = await Admin.findOne({ email });
@@ -16,7 +17,7 @@ module.exports.signin = async (req, res, next) => {
 
     if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "720h" });
 
     res.status(200).json({ result: oldUser, token });
   } catch (err) {

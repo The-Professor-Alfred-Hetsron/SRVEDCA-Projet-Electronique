@@ -4,16 +4,17 @@ const { checkAdmin } = require("../Middleware/AuthMiddlewares")
 
 const { getAllEtudiant, 
     getEtudiantByStatus, 
-    createEtudiant,
+    updateSt,
     updateAllEtudiant,
-    updateEtudiant,deleteEtudiant} = require('../Controllers/EtudiantController')
+    validated,deleteEtudiant, createEtudiant} = require('../Controllers/EtudiantController')
 
 
-    router.get('/', checkAdmin, getAllEtudiant);
+    router.get('/', getAllEtudiant);
     router.get('/attente', getEtudiantByStatus);
-    router.post('/', createEtudiant);
-    router.patch('/:id', checkAdmin, updateEtudiant);
-    router.patch('updateAll', checkAdmin, updateAllEtudiant);
-    router.delete('/:id', checkAdmin, deleteEtudiant);
+    router.post('/create',createEtudiant);
+    router.put('/update/:id', updateSt);
+    router.put('/validate', validated);
+    router.put('/updateAll',  updateAllEtudiant);
+    router.delete('/delete/:id',  deleteEtudiant);
 
 module.exports = router
