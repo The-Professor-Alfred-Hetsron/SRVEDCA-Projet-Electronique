@@ -387,7 +387,7 @@ useEffect(() => {
             <td>{tab.role}</td>
     </tr>)
     
-        const toPrint = (<div class="tableau">
+        const toPrint = (<div className="tableau">
             <table>
             <thead>
                 <tr>

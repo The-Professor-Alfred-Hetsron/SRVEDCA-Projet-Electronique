@@ -41,7 +41,7 @@ const PlanningTable = ()=>{
     })
 
     const planningTag = TimeTableFiltered
-    .map((TimeTable, index) => <tr>
+    .map((TimeTable, index) => <tr key={index}>
     <td>{index + 1}</td>
     <td>{jours[TimeTable.jourSemaine - 1]}</td>
     <td>{TimeTable.hDebut}</td>
@@ -132,7 +132,7 @@ return (
 function printContent() {
 
     const tableContent = TimeTableFiltered
-    .map((TimeTable, index) => <tr>
+    .map((TimeTable, index) => <tr key={index}>
     <td>{index + 1}</td>
     <td>{jours[TimeTable.jourSemaine - 1]}</td>
     <td>{TimeTable.hDebut}</td>
@@ -140,7 +140,7 @@ function printContent() {
     <td>{TimeTable.cours.code} <br/> {TimeTable.cours.nom}</td>
 </tr>)
 
-    const toPrint = (<div class="tableau">
+    const toPrint = (<div className="tableau">
         <table>
         <thead>
             <tr>

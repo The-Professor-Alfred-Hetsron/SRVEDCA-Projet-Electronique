@@ -1,20 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './HomeControlButton.css'
 
+const HomeControlButton = (props) => {
 
-export class HomeControlButton extends Component {
-  render() {
-    
-    return (
-        <div className='homeControlButton-container' style={this.props.bgColor}>
-            <div className='homeControlButton-container-div'>
-                <img src={this.props.icon} alt="" className="homeControlButton-container-div-img" />
-                <span className='homeControlButton-container-div-span'><span>{this.props.registeredNumber}</span></span>
-            </div>
-            <span className="homeControlButton-container-span">{this.props.label}</span>
+  const navigate = useNavigate()
+
+  return (
+    <div className='homeControlButton-container' style={props.bgColor}
+    onClick={()=>navigate(props.navigateTo)} >
+        <div className='homeControlButton-container-div'>
+            <img src={props.icon} alt="" className="homeControlButton-container-div-img" />
+            <span className='homeControlButton-container-div-span'><span>{props.registeredNumber}</span></span>
         </div>
-    )
-  }
+        <span className="homeControlButton-container-span">{props.label}</span>
+    </div>
+)
 }
 
 export default HomeControlButton

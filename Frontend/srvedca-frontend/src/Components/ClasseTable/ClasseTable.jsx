@@ -20,6 +20,7 @@ const ClasseTable = ()=>{
             axios.get(API + 'classe/all')
           .then(function (response) {//console.log(response.data)
             setTimeTable(response.data)
+            localStorage.setItem("nbClasses", response.data.length)
           })
           .catch(function (error) {
             console.log(error);
@@ -132,7 +133,7 @@ function printContent() {
     <td>{TimeTable.salle}</td>
 </tr>)
 
-    const toPrint = (<div class="tableau">
+    const toPrint = (<div className="tableau">
         <table>
         <thead>
                 <tr>

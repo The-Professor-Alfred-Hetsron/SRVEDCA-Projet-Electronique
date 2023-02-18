@@ -300,7 +300,7 @@ const TableEnrolment = () => {
         </tr>
         )
       
-          const toPrint = (<div class="tableau">
+          const toPrint = (<div className="tableau">
               <table>
               <thead>
               <th>Id</th>

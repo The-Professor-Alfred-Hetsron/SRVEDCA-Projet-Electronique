@@ -9,7 +9,7 @@ import {PlanningTable, Presences, CoursTable, TableEnrolment, TableAdmin} from '
 export class MainLeftSection extends Component {
   render() {
     const pageType = this.props.page
-    console.log(pageType)
+    //console.log(pageType)
     return (
       <div className='mainLeftSection-container'>
         {pageType === "accueil" ? /*La page Accueil du Dashboard*/

@@ -40,12 +40,12 @@ const LoginForm = () => {
     <form className='cover' method='post' onSubmit={handleSubmit} >
       <h1>Connexion</h1>
       <div className='input-group'>
-          <input name="email" type="text" class="input" placeholder=" " onChange={handleChange} />
-          <label class="placeholder"> Email</label>
+          <input name="email" type="text" className="input" placeholder=" " onChange={handleChange} />
+          <label className="placeholder"> Email</label>
       </div>
       <div className='input-group'>
           <input name="motdepasse" type="password" class='input' placeholder=" " onChange={handleChange}/>
-          <label class="placeholder">Mot de passe</label>
+          <label className="placeholder">Mot de passe</label>
       </div>
       <div className="fail">
         {requestFail}

@@ -53,7 +53,7 @@ const DeletePlanningModal = ({
     }, [])
 
     const deletePlanning = (e)=>{e.preventDefault()
-        console.log(data)
+        //console.log(data)
         axios.delete(API + 'planning/delete/' + data._id)
           .then(function (response) {
             // console.log(response);

@@ -20,6 +20,7 @@ const CoursTable = ()=>{
             axios.get(API + 'cours/all')
           .then(function (response) {//console.log(response.data)
             setTimeTable(response.data)
+            localStorage.setItem("nbCours", response.data.length)
           })
           .catch(function (error) {
             console.log(error);
@@ -40,7 +41,7 @@ const CoursTable = ()=>{
     })
 
     const coursTag = TimeTableFiltered
-    .map((TimeTable, index) => <tr>
+    .map((TimeTable, index) => <tr key={index}>
     <td>{index + 1}</td>
     <td>{TimeTable.code}</td>
     <td>{TimeTable.nom}</td>
@@ -131,7 +132,7 @@ return (
 function printContent() {
 
     const tableContent = TimeTableFiltered
-    .map((TimeTable, index) => <tr>
+    .map((TimeTable, index) => <tr key={index}>
     <td>{index + 1}</td>
     <td>{TimeTable.code}</td>
     <td>{TimeTable.nom}</td>
@@ -139,7 +140,7 @@ function printContent() {
     <td>{TimeTable.semestre}</td>
 </tr>)
 
-    const toPrint = (<div class="tableau">
+    const toPrint = (<div className="tableau">
         <table>
         <thead>
             <tr>

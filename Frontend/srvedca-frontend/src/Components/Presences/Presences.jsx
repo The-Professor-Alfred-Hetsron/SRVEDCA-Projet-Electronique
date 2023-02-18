@@ -74,8 +74,8 @@ const Presences = () => {
             id="classe"
             onChange={(e) => setClasseId(e.currentTarget.value)}
           >
-            {listeClasses.map((value) => (
-              <option value={value._id}>{value.nom}</option>
+            {listeClasses.map((value, index) => (
+              <option value={value._id} key={index} >{value.nom}</option>
             ))}
           </select>
         </div>
@@ -92,8 +92,8 @@ const Presences = () => {
             .filter((value) => {
               return value.classe._id === classeId;
             })
-            .map((value) => (
-              <option value={value._id}>
+            .map((value, index) => (
+              <option value={value._id} key={index}>
                 {value.code + " - " + value.nom}
               </option>
             ))}

@@ -3,7 +3,7 @@ import React from 'react';
 const PresencesTable = ({tableData, printContent}) => {
 
     const presencesTag = tableData
-    .map((data, index) => <tr>
+    .map((data, index) => <tr key={index}>
     <td>{index + 1}</td>
     <td>{data.etudiant.nom}</td>
     <td>{data.cours.code} <br/> {data.cours.nom}</td>
@@ -13,7 +13,7 @@ const PresencesTable = ({tableData, printContent}) => {
 
     return (
         <div className='tableau'>
-        <div class="table-header">
+        <div className="table-header">
         <header>
             <button onClick={printContent} >Imprimer</button>
             {/* <input type="search" value={searchText} onChange = {(e)=>setSearchText(e.currentTarget.value)} />

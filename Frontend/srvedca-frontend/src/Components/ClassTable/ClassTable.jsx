@@ -26,7 +26,7 @@ export class ClassTable extends Component {
     </td>
 </tr>)
     return (
-        <div class="tableau">
+        <div className="tableau">
             <header>
                 <button>Valider</button>
                 <button>Imprimer</button>

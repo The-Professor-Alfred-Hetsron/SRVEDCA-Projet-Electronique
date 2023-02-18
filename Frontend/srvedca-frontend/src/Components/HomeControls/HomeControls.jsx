@@ -10,10 +10,10 @@ import axios from 'axios'
 
 
 const HomeControls =  () => {
-    const [nbreAdmin, setNbreAdmin] = useState(0)
-    const [nbrEtudiant, setEtudiant] = useState(0)
-    const [nbClasses, setNbClasses] = useState(0)
-    const [nbCours, setNbCours] = useState(0)
+    const [nbreAdmin, setNbreAdmin] = useState(localStorage.getItem("nbreAdmin") || 0)
+    const [nbrEtudiant, setEtudiant] = useState(localStorage.getItem("nbrEtudiant") || 0)
+    const [nbClasses, setNbClasses] = useState(localStorage.getItem("nbClasses") || 0)
+    const [nbCours, setNbCours] = useState(localStorage.getItem("nbCours") || 0)
 
     const updateTab= ()=>{
         const url = "http://localhost:8080/api/admin/all";
@@ -28,6 +28,7 @@ const HomeControls =  () => {
     const getStudent = () =>{
         axios.get("http://localhost:8080/api/etudiant/").then((res)=>{
           setEtudiant(res.data.etudiantList.length)
+          localStorage.setItem("nbrEtudiant", res.data.etudiantList.length)
           //localStorage.setItem('studentList', JSON.stringify(res.data.data))
         }).catch(err=>{
           console.log(err);
@@ -37,6 +38,7 @@ const HomeControls =  () => {
       const getClasses = () =>{
         axios.get("http://localhost:8080/api/classe/all").then((res)=>{
           setNbClasses(res.data.length)
+          localStorage.setItem("nbClasses", res.data.length)
           //localStorage.setItem('studentList', JSON.stringify(res.data.data))
         }).catch(err=>{
           console.log(err);
@@ -46,6 +48,7 @@ const HomeControls =  () => {
       const getCours = () =>{
         axios.get("http://localhost:8080/api/cours/all").then((res)=>{
           setNbCours(res.data.length)
+          localStorage.setItem("nbCours", res.data.length)
           //localStorage.setItem('studentList', JSON.stringify(res.data.data))
         }).catch(err=>{
           console.log(err);
@@ -57,12 +60,9 @@ const HomeControls =  () => {
         getClasses()
         getCours()
       }, []);
-    //if(localStorage.getItem("nbreAdmin")) setNbreAdmin(localStorage.getItem("nbreAdmin"));
 
     useEffect(() => {
         updateTab()
-        getStudent()
-        if(localStorage.getItem("nbreAdmin")) setNbreAdmin(localStorage.getItem("nbreAdmin"));
       }, [localStorage.getItem("nbreAdmin")]);
 
     const controlsLayout = [
@@ -70,34 +70,39 @@ const HomeControls =  () => {
             bgColor: {backgroundImage: "linear-gradient(130deg, #C7E2EB, #2A9ADA)"},
             icon: EnrolStudents,
             label: "Etudiants Enrôlés",
-            registeredNumber: nbrEtudiant
+            registeredNumber: nbrEtudiant,
+            navigateTo: "/etudiant",
         },
         {
             bgColor: {backgroundImage: "linear-gradient(130deg, #A64AEE, #2A9ADA)"},
             icon: Class,
             label: "Classes",
-            registeredNumber: nbClasses
+            registeredNumber: nbClasses,
+            navigateTo: "/classe",
         },
         {
             bgColor: {backgroundImage: "linear-gradient(130deg, #603FE3, #29ABF4)"},
             icon: Courses,
             label: "Cours",
-            registeredNumber: nbCours
+            registeredNumber: nbCours,
+            navigateTo: "/cours",
         },
         {
             bgColor: {backgroundImage: "linear-gradient(130deg, #603FE3, #86BAFC)"},
             icon: Admin,
             label: "Administrateurs",
-            registeredNumber: nbreAdmin
+            registeredNumber: nbreAdmin,
+            navigateTo: "/admin",
         }
     ]
 
-    const ControlsButton = controlsLayout.map((layout) =>
-    <HomeControlButton
+    const ControlsButton = controlsLayout.map((layout, index) =>
+    <HomeControlButton key={index}
         bgColor = {layout.bgColor}
         icon = {layout.icon}
         label = {layout.label}
         registeredNumber = {layout.registeredNumber}
+        navigateTo = {layout.navigateTo}
     />)
     
     return (
