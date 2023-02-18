@@ -75,12 +75,16 @@ const savePresenceByMatricule = async (req, res, next) => {
     try {
         const {matricule, dateheure} = req.body
         const etudiant = await Etudiant.findOne().where({matricule: matricule})
-        if(!etudiant) throw new Error("L'étudiant de matricule " + matricule + "n'existe pas.")
+        if(!etudiant) throw new Error("L'étudiant de matricule " + matricule + " n'existe pas.")
 
         let presence = new Presence({
             etudiant: etudiant._id,
             dateheure: dateheure
         })
+
+        let cours = await presence.getCours() //On obtient le cours qui se déroule au moment de cette présence
+
+        if(!cours) throw new Error(`L'étudiant ${matricule} (${etudiant.nom}) n'a pas cours en ce moment.`)
 
         await presence.save()
         res.status(200).json({message: 'Présence enregistrée avec succès.'})

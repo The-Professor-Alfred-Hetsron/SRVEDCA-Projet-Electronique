@@ -224,9 +224,9 @@ const TableEnrolment = () => {
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody/>
+                        <tbody>
                         {StudentTable}
-                        <tbody/>
+                        </tbody>
                     </table>
                 </div>
                 <div>

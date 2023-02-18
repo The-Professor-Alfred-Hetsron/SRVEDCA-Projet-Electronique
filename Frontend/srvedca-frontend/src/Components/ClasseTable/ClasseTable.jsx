@@ -40,7 +40,7 @@ const ClasseTable = ()=>{
     })
 
     const classeTag = TimeTableFiltered
-    .map((TimeTable, index) => <tr>
+    .map((TimeTable, index) => <tr key={index}>
     <td>{index + 1}</td>
     <td>{TimeTable.nom}</td>
     <td>{TimeTable.salle}</td>
@@ -127,7 +127,7 @@ return (
 function printContent() {
 
     const tableContent = TimeTableFiltered
-    .map((TimeTable, index) => <tr>
+    .map((TimeTable, index) => <tr key={index}>
     <td>{index + 1}</td>
     <td>{TimeTable.nom}</td>
     <td>{TimeTable.salle}</td>

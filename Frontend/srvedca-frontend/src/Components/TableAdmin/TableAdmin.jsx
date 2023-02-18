@@ -237,9 +237,9 @@ useEffect(() => {
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody/>
+                        <tbody>
                         {AdminTable}
-                        <tbody/>
+                        </tbody>
                     </table>
                 </div>
                 <div>
@@ -379,7 +379,7 @@ useEffect(() => {
             if(searchText === '') return true
             return value.nom.toLowerCase().includes(searchText.toLowerCase())
         })
-        .map((tab, index) => <tr>
+        .map((tab, index) => <tr key={tab._id}>
             <td>{index + 1}</td>
             <td className='tableAdmin-name'>{tab.nom}</td>
             <td>{tab.email}</td>

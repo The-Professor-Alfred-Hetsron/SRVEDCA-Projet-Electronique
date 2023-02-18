@@ -82,16 +82,16 @@ const DeleteCoursModal = ({
           <div>
             <label htmlFor="classe">Classe</label>
             <select name="classe" id="classe" value={classeId} onChange={(e)=>setClasseId(e.currentTarget.value)} disabled>
-                {listeClasses.map((value)=>
-                    <option value={value._id}>{value.nom}</option>
+                {listeClasses.map((value, index)=>
+                    <option key={index} value={value._id}>{value.nom}</option>
                 )}
             </select>
           </div>
           <div>
             <label htmlFor="semestre">Semestre</label>
             <select name="semestre" id="semestre" value={semestre} onChange={(e)=>setSemestre(e.currentTarget.value)} disabled>
-                {listeSemestres.map((value)=>
-                    <option value={value}>{value}</option>
+                {listeSemestres.map((value, index)=>
+                    <option key={index} value={value}>{value}</option>
                 )}
             </select>
           </div>

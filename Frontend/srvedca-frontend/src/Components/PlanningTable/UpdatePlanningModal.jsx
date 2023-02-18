@@ -88,7 +88,7 @@ const UpdatePlanningModal = ({
             <label htmlFor="joursemaine">Jour</label>
             <select name="joursemaine" id="joursemaine" value={jourSemaine} onChange={(e)=>setJourSemaine(e.currentTarget.value)}>
                 {jours.map((value, index)=>
-                    <option value={index+1}>{value}</option>
+                    <option key={index} value={index+1}>{value}</option>
                 )}
             </select>
           </div>
@@ -103,8 +103,8 @@ const UpdatePlanningModal = ({
           <div>
             <label htmlFor="cours">Cours</label>
             <select name="cours" id="cours" value={cours} onChange={(e)=>setCours(e.currentTarget.value)}>
-                {listeCours.map((value)=>
-                    <option value={value._id}>{value.code + ' - ' + value.nom}</option>
+                {listeCours.map((value, index)=>
+                    <option key={index} value={value._id}>{value.code + ' - ' + value.nom}</option>
                 )}
             </select>
           </div>
