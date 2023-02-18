@@ -52,7 +52,7 @@ const TableAdmin = () => {
     }
 
     const updateTab= ()=>{
-        const url = "http://localhost:8080/api/admin/all";
+        const url = "https://projet-electronique-backend-production.up.railway.app/api/admin/all";
         axios.get(url).then((response) => {
           setTab(response.data)
           localStorage.setItem("nbreAdmin", response.data.length);
@@ -101,7 +101,7 @@ const TableAdmin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const url = `http://localhost:8080/api/admin/update/`;
+    const url = `https://projet-electronique-backend-production.up.railway.app/api/admin/update/`;
     
     await axios.put(url, form).then((response) => {
         //window.location = "admin/";
@@ -122,7 +122,7 @@ const TableAdmin = () => {
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const deleteAdmin = async () => {
-    const url = `http://localhost:8080/api/admin/destroy/${adminId}`;
+    const url = `https://projet-electronique-backend-production.up.railway.app/api/admin/destroy/${adminId}`;
     
     await axios.delete(url).then((response) => {
         console.log(response)
@@ -143,7 +143,7 @@ const TableAdmin = () => {
   const handleCreateAdmin = async (e) => {
     e.preventDefault();
   
-    const url = `http://localhost:8080/api/admin/store`;
+    const url = `https://projet-electronique-backend-production.up.railway.app/api/admin/store`;
     
     await axios.post(url, formData).then((response) => {
         updateTab()

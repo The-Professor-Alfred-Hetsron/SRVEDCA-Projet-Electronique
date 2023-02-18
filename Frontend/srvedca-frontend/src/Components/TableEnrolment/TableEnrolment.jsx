@@ -29,7 +29,7 @@ const TableEnrolment = () => {
         const [form, setForm] = useState(initialForm)
 
 
-        const url = "http://localhost:8080/api/etudiant/";
+        const url = "https://projet-electronique-backend-production.up.railway.app/api/etudiant/";
         const getAllStudent = () =>{
             axios.get(url).then((res)=>{
               setStudent(res.data.etudiantList)
@@ -40,7 +40,7 @@ const TableEnrolment = () => {
           }
 
           const getStudent = () =>{
-            const url = "http://localhost:8080/api/etudiant/attente";
+            const url = "https://projet-electronique-backend-production.up.railway.app/api/etudiant/attente";
             axios.get(url).then((res)=>{
               localStorage.setItem('studentList', JSON.stringify(res.data.data))
             }).catch(err=>{
@@ -50,7 +50,7 @@ const TableEnrolment = () => {
 
 
           const updateAll = ()=>{
-            const url = "http://localhost:8080/api/etudiant/updateAll";
+            const url = "https://projet-electronique-backend-production.up.railway.app/api/etudiant/updateAll";
             axios.put(url).then(res => {
                 getAllStudent()
                 getStudent()
@@ -60,7 +60,7 @@ const TableEnrolment = () => {
 
             const deleteStudent = async () => {
               try {
-                const res = await axios.delete(`http://localhost:8080/api/etudiant/delete/${studentID}`);
+                const res = await axios.delete(`https://projet-electronique-backend-production.up.railway.app/api/etudiant/delete/${studentID}`);
                 //setResponse(res.data);
                 setId("")
                 closeModal1()
@@ -73,7 +73,7 @@ const TableEnrolment = () => {
 
             const updateStudent = (e)=>{
               e.preventDefault()
-              const url = `http://localhost:8080/api/etudiant/update/${studentID}`
+              const url = `https://projet-electronique-backend-production.up.railway.app/api/etudiant/update/${studentID}`
               axios.put(url,form).then((res)=>{
                 getAllStudent()
                 getStudent()
@@ -86,7 +86,7 @@ const TableEnrolment = () => {
             };
 
             const validateStudent = (id)=>{
-              const url = `http://localhost:8080/api/etudiant/validate/`
+              const url = `https://projet-electronique-backend-production.up.railway.app/api/etudiant/validate/`
               axios.put(url, {id: id}).then((res)=>{
                 getAllStudent()
                 getStudent()

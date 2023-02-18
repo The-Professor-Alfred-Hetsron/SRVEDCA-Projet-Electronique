@@ -16,7 +16,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = "http://localhost:8080/api/auth/login";
+    const url = "https://projet-electronique-backend-production.up.railway.app/api/auth/login";
     localStorage.clear();
 
     await axios.post(url, form).then((response) => {

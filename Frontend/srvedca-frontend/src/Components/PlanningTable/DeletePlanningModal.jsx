@@ -22,7 +22,7 @@ function getDate(timeString){
     return moment({hour: Number(tab[0]), minute: Number(tab[1])}).toDate()
 }
 const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
-const API = " http://localhost:8080/api/"
+const API = " https://projet-electronique-backend-production.up.railway.app/api/"
 
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)

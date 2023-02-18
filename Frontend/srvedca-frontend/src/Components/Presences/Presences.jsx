@@ -5,7 +5,7 @@ import moment from "moment/moment";
 import PresencesTable from "./PresencesTable"
 import { renderToString } from 'react-dom/server'
 
-const API = " http://localhost:8080/api/";
+const API = " https://projet-electronique-backend-production.up.railway.app/api/";
 
 const Presences = () => {
   const [classeId, setClasseId] = useState();

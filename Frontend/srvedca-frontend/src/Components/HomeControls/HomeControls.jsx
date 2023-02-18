@@ -16,7 +16,7 @@ const HomeControls =  () => {
     const [nbCours, setNbCours] = useState(localStorage.getItem("nbCours") || 0)
 
     const updateTab= ()=>{
-        const url = "http://localhost:8080/api/admin/all";
+        const url = "https://projet-electronique-backend-production.up.railway.app/api/admin/all";
         axios.get(url).then((response) => {
           localStorage.setItem("nbreAdmin", response.data.length);
           setNbreAdmin(response.data.length)
@@ -26,7 +26,7 @@ const HomeControls =  () => {
     };
 
     const getStudent = () =>{
-        axios.get("http://localhost:8080/api/etudiant/").then((res)=>{
+        axios.get("https://projet-electronique-backend-production.up.railway.app/api/etudiant/").then((res)=>{
           setEtudiant(res.data.etudiantList.length)
           localStorage.setItem("nbrEtudiant", res.data.etudiantList.length)
           //localStorage.setItem('studentList', JSON.stringify(res.data.data))
@@ -36,7 +36,7 @@ const HomeControls =  () => {
       }
 
       const getClasses = () =>{
-        axios.get("http://localhost:8080/api/classe/all").then((res)=>{
+        axios.get("https://projet-electronique-backend-production.up.railway.app/api/classe/all").then((res)=>{
           setNbClasses(res.data.length)
           localStorage.setItem("nbClasses", res.data.length)
           //localStorage.setItem('studentList', JSON.stringify(res.data.data))
@@ -46,7 +46,7 @@ const HomeControls =  () => {
       }
 
       const getCours = () =>{
-        axios.get("http://localhost:8080/api/cours/all").then((res)=>{
+        axios.get("https://projet-electronique-backend-production.up.railway.app/api/cours/all").then((res)=>{
           setNbCours(res.data.length)
           localStorage.setItem("nbCours", res.data.length)
           //localStorage.setItem('studentList', JSON.stringify(res.data.data))

@@ -8,7 +8,7 @@ import DeletePlanningModal from './DeletePlanningModal'
 import { useEffect } from 'react'
 import axios from 'axios'
 
-const API = " http://localhost:8080/api/"
+const API = " https://projet-electronique-backend-production.up.railway.app/api/"
 const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
 
 const PlanningTable = ()=>{

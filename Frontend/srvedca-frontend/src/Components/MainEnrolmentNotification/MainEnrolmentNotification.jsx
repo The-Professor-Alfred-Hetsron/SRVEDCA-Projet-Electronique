@@ -6,7 +6,7 @@ import {EnrolementCard} from '../../Components'
 import axios from 'axios'
 
 const MainEnrolmentNotification = () => {
-  const url = "http://localhost:8080/api/etudiant/attente";
+  const url = "https://projet-electronique-backend-production.up.railway.app/api/etudiant/attente";
   const [enrolledInfo, setEnrol]=useState([]);
   const [nbreEtudiant, setNbreEtudiant] = useState(0)
 

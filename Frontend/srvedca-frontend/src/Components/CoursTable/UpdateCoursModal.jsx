@@ -14,7 +14,7 @@ const customStyles = {
   },
 };
 
-const API = " http://localhost:8080/api/"
+const API = " https://projet-electronique-backend-production.up.railway.app/api/"
 const listeSemestres = [1, 2]
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
