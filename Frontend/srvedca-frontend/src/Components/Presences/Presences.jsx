@@ -18,7 +18,11 @@ const Presences = () => {
   const [allDates, setAllDates] = useState(false);
   const [TimeTable, setTimeTable] = useState([]);
 
+  const [rechercheEnCours, setRechercheEnCours] = useState(false);
+
   const getPresences = (e)=>{e.preventDefault()
+
+    setRechercheEnCours(true)
 
     let data = { classeId: document.querySelector("#classe").value };
     if (!allCours) data.coursId = document.querySelector("#cours").value;
@@ -32,8 +36,10 @@ const Presences = () => {
       .then(function (response) {
         // console.log(response.data);
         setTimeTable(response.data) //On actualise nos données
+        setRechercheEnCours(false)
       })
       .catch(function (error) {
+        setRechercheEnCours(false)
         alert(error.message)
       });
     // console.log(jourSemaine, getDate(hDebut), getDate(hFin), cours)
@@ -156,7 +162,10 @@ const Presences = () => {
         </div>
       </div>
       <div className="corps">
+      {
+        rechercheEnCours ? <h3>Recherche en cours. Patientez svp...</h3> : 
         <PresencesTable tableData={TimeTable} printContent={printContent} />
+      }
       </div>
     </div>
   );

@@ -1,9 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=16.13.2"
+  },
   "description": "SRVEDCA means Système de Reconnaissance Vocale et Empreinte Digitale pour le Controle d'Accès. This repository will gather our project source code for subject Interfacing and Electronics",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Djoumessi Aurel",

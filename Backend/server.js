@@ -9,21 +9,21 @@ const cors = require('cors');
 
 // Configuration des variables d'environement1
 dotenv.config({
-    path : "./config/.env"
+    path : "./API/config/.env"
 })
 
 // Importation des routes
-const AdminRoute = require('./Routes/admin')
-const AuthRoute = require('./Routes/auth')
-const ClasseRoute = require('./Routes/classe')
-const CoursRoute = require('./Routes/cours')
-const EtudiantRoute = require('./Routes/etudiant')
-const PlanningRoute = require('./Routes/planning')
-const PresenceRoute = require('./Routes/presence')
+const AdminRoute = require('./API/Routes/admin')
+const AuthRoute = require('./API/Routes/auth')
+const ClasseRoute = require('./API/Routes/classe')
+const CoursRoute = require('./API/Routes/cours')
+const EtudiantRoute = require('./API/Routes/etudiant')
+const PlanningRoute = require('./API/Routes/planning')
+const PresenceRoute = require('./API/Routes/presence')
 
 
 // Connexion a la BD
-const DBURL = process.env.DBURL || 'mongodb://localhost:27017/srvedcaDB'
+const DBURL = process.env.DBURL || 'mongodb+srv://user-aurel:amCgrWF32p0rTXts@cluster0.swo0hmy.mongodb.net/projet_electronique?retryWrites=true&w=majority'
 
 mongoose.set('strictQuery', true)
 
