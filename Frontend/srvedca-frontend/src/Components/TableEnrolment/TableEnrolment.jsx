@@ -27,6 +27,7 @@ const TableEnrolment = () => {
         const [studentID, setId] = useState("")
         const [error, setError] = useState("")
         const [form, setForm] = useState(initialForm)
+        const [fingerPrintUrl, setFingerPrintUrl] = useState('')
 
 
         const url = "http://localhost:8080/api/etudiant/";
@@ -186,8 +187,8 @@ const TableEnrolment = () => {
             <td>{student.matricule}</td>
             <td className='student-name'>{student.nom}</td>
             <td>{student.classe.nom}</td>
-            <td>{student.empreinte}</td>
-            <td><img src={Empreinte} alt="" /></td>
+            <td className='fingerprint-cell'>{student.empreinte}</td>
+            <td><img src={Empreinte} alt="Macabo" /></td>
             <td>{moment(student.dateCreation).format('DD/MM/YYYY à HH:mm:ss')}</td>
             <td><span className={student.statut === true ? "valide" : "attente"}>{student.statut==true ?"Validé":"En attente"}</span></td>
             <td>

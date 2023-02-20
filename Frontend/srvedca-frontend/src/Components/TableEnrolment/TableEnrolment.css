@@ -1,3 +1,14 @@
+.fingerprint-cell{
+  max-width: 170px;
+    /* Both of the following are required for text-overflow */
+  white-space: nowrap;
+  overflow: hidden;
+
+  
+  text-overflow: ellipsis;
+  /* word-break: break-all; */
+}
+
 .students-div{
     top: 28%;
     position: absolute;
