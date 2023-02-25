@@ -14,7 +14,7 @@ module.exports.getAllEtudiant = async (req, res) =>{
         //const etudiantList = await Etudiant.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
         const etudiantList = await Etudiant.find().sort({dateCreation: -1}).populate('classe')
 
-        res.json({ etudiantList});
+        res.json({ etudiantList });
     } catch (error) {    
         res.status(404).json({ message: error.message });
     }
@@ -26,7 +26,7 @@ module.exports.getEtudiantByStatus = async (req, res) => {
     try {
         const etudiants = await Etudiant.find({ statut:false }).populate('classe');
 
-        res.json({ data: etudiants });
+        res.json(etudiants);
     } catch (error) {    
         res.status(404).json({ message: error.message });
     }
@@ -46,9 +46,9 @@ module.exports.createEtudiant = async (req, res) => {
     })
 
     try {
-        await etudiant.save();
+        let result = await (await etudiant.save()).populate('classe');
 
-        res.status(201).json({message:"Etudiant enregistré avec succès"});
+        res.status(201).json({message:"Etudiant enregistré avec succès", content: result});
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
@@ -71,8 +71,9 @@ module.exports.updateSt = async (req, res) => {
 
     try {
         await Etudiant.findByIdAndUpdate (id, {$set : student});
+        let result = await Etudiant.findById(id).populate('classe')
 
-        res.status(201).json({message:"modifié avec succès"});
+        res.status(201).json({message:"modifié avec succès", content: result});
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
@@ -86,14 +87,13 @@ module.exports.validated = async (req, res) => {
 
     const updatedData = { statut:true };
 
-    await Etudiant.findByIdAndUpdate(id, { $set: updatedData })
-    .then(()=>{
-        res.json({ message: "Enrollement validé"})
-    })
-    .catch(error => {
-        res.status(409).json({ message: error.message })
-    } )
+    try {
+        let result = await Etudiant.findByIdAndUpdate(id, { $set: updatedData })
 
+        res.status(201).json({ message: "Enrollement validé", content: await result.populate('classe')})
+    } catch (error) {
+        res.status(409).json({ message: error.message })
+    }
 
 };
 

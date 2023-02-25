@@ -17,6 +17,11 @@ const getPresences = async (req, res, next) => {
         }
 
         for(const presence of presences){
+
+            if(!presence.etudiant.classe.equals(classeId)){
+                continue
+            }
+
             let a_presence = {
                 //etudiant: await presence.etudiant.populate('classe'),
                 _id: presence._id,
@@ -27,17 +32,10 @@ const getPresences = async (req, res, next) => {
                 dateheure: presence.dateheure
             }
 
-            if(a_presence.etudiant.classe.equals(classeId)){
-                presencesTab.push(a_presence)
-            }
+            if(!coursId || a_presence.cours._id.equals(coursId)) presencesTab.push(a_presence)
             
         }
 
-        if(coursId){
-            presencesTab = presencesTab.filter((presence) => {
-            return presence.cours._id.equals(coursId)
-            })
-        }
 
         if(dateDebut){dateDebut = moment(dateDebut).unix()
             presencesTab = presencesTab.filter((presence) => {

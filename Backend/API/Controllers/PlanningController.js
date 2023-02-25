@@ -9,12 +9,16 @@ const store = async (req, res, next) => {
             heureFin : req.body.heureFin,
             cours : req.body.cours
         })
-        let response = await planning.save()
+        let response = await (await planning.save()).populate('cours')
+
         res.status(200).json({
-            message : 'Nouveau planning ajouté !', content: await response.populate('cours')
+            message : 'Nouveau planning ajouté !', content: {_id: response._id, __v: response.__v,
+                jourSemaine: response.jourSemaine, heureDebut: response.heureDebut, heureFin: response.heureFin,
+                cours: response.cours, hDebut: response.hDebut, hFin: response.hFin}
         })
 
     } catch (error) {
+		console.log(error.message)
         res.status(400).json({
             message : 'Une erreur est survenue !', content: error.message
         })
@@ -52,13 +56,17 @@ const update = async (req, res, next) => {
         if(req.body.heureDebut) plan.heureDebut = req.body.heureDebut
         if(req.body.heureFin) plan.heureFin = req.body.heureFin
         if(req.body.cours) plan.cours = req.body.cours
-        await plan.save()
+        
+        let response = await (await plan.save()).populate('cours')
 
         res.status(200).json({
-            message: 'Planning modifié avec sucèss!'
+            message: 'Planning modifié avec sucèss!', content: {_id: response._id, __v: response.__v,
+                jourSemaine: response.jourSemaine, heureDebut: response.heureDebut, heureFin: response.heureFin,
+                cours: response.cours, hDebut: response.hDebut, hFin: response.hFin}
         })
 
     } catch (error) {
+		console.log(error.message)
         res.status(400).json({
             message:'Une erreur est survenue!', content: error.message
         })
