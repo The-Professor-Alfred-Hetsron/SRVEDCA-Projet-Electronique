@@ -6,8 +6,6 @@ const moment = require('moment')
 //Obtenir des présences
 const getPresences = async (req, res, next) => {
     try {
-        const presences = await Presence.find().sort({dateheure: -1}).populate('etudiant').exec()
-        let presencesTab = []
         let classeId = req.body.classeId, coursId = req.body.coursId,
         dateDebut = req.body.dateDebut, dateFin = req.body.dateFin //intervalle des dates
 
@@ -15,6 +13,9 @@ const getPresences = async (req, res, next) => {
         if(!a_classe){ //Si la classe n'existe pas
             throw new Error('La classe n\'existe pas. Id incorrect')
         }
+
+        const presences = await Presence.find().sort({dateheure: -1}).populate('etudiant').exec()
+        let presencesTab = []
 
         for(const presence of presences){
             let a_presence = {

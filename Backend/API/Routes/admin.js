@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 const AdminController = require('../Controllers/AdminController')
+const {checkAdmin} = require('../Middleware/AuthMiddlewares')
+
+router.use(checkAdmin)
 
 router.post('/store', AdminController.store)
 router.get('/all', AdminController.showAll)

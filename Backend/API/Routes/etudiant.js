@@ -8,6 +8,7 @@ const { getAllEtudiant,
     updateAllEtudiant,
     validated,deleteEtudiant, createEtudiant} = require('../Controllers/EtudiantController')
 
+router.use(checkAdmin)
 
     router.get('/', getAllEtudiant);
     router.get('/attente', getEtudiantByStatus);

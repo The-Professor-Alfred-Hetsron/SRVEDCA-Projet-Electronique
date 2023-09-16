@@ -23,7 +23,7 @@ const PresenceRoute = require('./Routes/presence')
 
 
 // Connexion a la BD
-const DBURL = process.env.DBURL || 'mongodb://localhost:27017/srvedcaDB'
+const DBURL = process.env.DBURL || 'mongodb://localhost:27017/projet_electronique'
 
 mongoose.set('strictQuery', true)
 

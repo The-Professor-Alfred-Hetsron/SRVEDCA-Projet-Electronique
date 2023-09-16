@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 const PresenceController = require('../Controllers/PresenceController')
+const {checkAdmin} = require('../Middleware/AuthMiddlewares')
+
+router.use(checkAdmin)
 
 router.get('/', PresenceController.getPresences)
 router.post('/', PresenceController.getPresences) //J'ajoute cette ligne parce que l'ESP32 (et axios aussi) ne peut pas faire de GET ayant un body. Il fera donc un POST à la place
