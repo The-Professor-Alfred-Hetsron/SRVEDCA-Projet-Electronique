@@ -16,9 +16,10 @@ const store = async (req, res, next) => {
 
         let result = await admin.save()
         res.status(200).json({
-            message: 'Administrateur enregistré avec sucèss!'
+            message: 'Administrateur enregistré avec sucèss!', content: result
         })
     } catch (error) {
+		//console.log(error.message)
         res.status(400).json({
             message:'Une erreur est survenue!', content: error.message
         })
@@ -71,7 +72,7 @@ const update = async (req, res, next) =>{
         await result.save()
 
         res.status(200).json({
-            result
+            message:'Admin modifié avec succès', content: result
         })
     } catch (error) {
         res.status(400).json({

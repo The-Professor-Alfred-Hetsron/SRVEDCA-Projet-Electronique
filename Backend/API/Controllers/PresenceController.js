@@ -6,6 +6,8 @@ const moment = require('moment')
 //Obtenir des présences
 const getPresences = async (req, res, next) => {
     try {
+        const presences = await Presence.find().sort({dateheure: -1}).populate('etudiant').exec()
+        let presencesTab = []
         let classeId = req.body.classeId, coursId = req.body.coursId,
         dateDebut = req.body.dateDebut, dateFin = req.body.dateFin //intervalle des dates
 
@@ -14,10 +16,12 @@ const getPresences = async (req, res, next) => {
             throw new Error('La classe n\'existe pas. Id incorrect')
         }
 
-        const presences = await Presence.find().sort({dateheure: -1}).populate('etudiant').exec()
-        let presencesTab = []
-
         for(const presence of presences){
+
+            if(!presence.etudiant.classe.equals(classeId)){
+                continue
+            }
+
             let a_presence = {
                 //etudiant: await presence.etudiant.populate('classe'),
                 _id: presence._id,
@@ -28,17 +32,10 @@ const getPresences = async (req, res, next) => {
                 dateheure: presence.dateheure
             }
 
-            if(a_presence.etudiant.classe.equals(classeId)){
-                presencesTab.push(a_presence)
-            }
+            if(!coursId || a_presence.cours._id.equals(coursId)) presencesTab.push(a_presence)
             
         }
 
-        if(coursId){
-            presencesTab = presencesTab.filter((presence) => {
-            return presence.cours._id.equals(coursId)
-            })
-        }
 
         if(dateDebut){dateDebut = moment(dateDebut).unix()
             presencesTab = presencesTab.filter((presence) => {

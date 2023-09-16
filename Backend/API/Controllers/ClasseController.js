@@ -9,7 +9,7 @@ const store = (req, res, next) => {
     classe.save()
     .then(response =>{
         res.status(200).json({
-            message: 'Classe enregistrée avec sucèss!'
+            message: 'Classe enregistrée avec sucèss!', content: response
         })
     })
     .catch(error => {
@@ -58,7 +58,7 @@ const update = async (req, res, next) =>{
         await classe.save()
 
         res.status(200).json({
-            message: 'Classe modifiée avec sucèss!'
+            message: 'Classe modifiée avec sucèss!', content: classe
         })
 
     } catch (error) {

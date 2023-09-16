@@ -1,7 +1,7 @@
 const Cours = require('../../Database/Cours')
 
 // Creer un nouveau cours
-const store = (req, res, next) => {
+const store = async (req, res, next) => {
      let cours = new Cours({
         code : req.body.code,
         nom :  req.body.nom,
@@ -9,17 +9,16 @@ const store = (req, res, next) => {
         semestre : req.body.semestre
      })
 
-     cours.save()
-     .then(response =>{
+    try {
+        let result = await cours.save()
         res.status(200).json({
-            message : 'Nouveau Cours ajouté !'
-        })
-    })
-    .catch(error =>{
+            message : 'Nouveau Cours ajouté !', content: await result.populate('classe')
+       })
+    } catch (error) {
         res.status(400).json({
             message : 'Une erreur est survenue !', content: error.message
         })
-    })
+    }
 }
 
 //Montrer la liste de cours
@@ -62,10 +61,10 @@ const update = async (req, res, next) => {
         if(req.body.classe) cours.classe = req.body.classe
         if(req.body.semestre) cours.semestre = req.body.semestre
 
-        await cours.save()
+        cours = await (await cours.save()).populate('classe')
 
         res.status(200).json({
-            message: 'Cours modifiée avec sucèss!'
+            message: 'Cours modifiée avec sucèss!', content: cours
         })
 
     } catch (error) {
