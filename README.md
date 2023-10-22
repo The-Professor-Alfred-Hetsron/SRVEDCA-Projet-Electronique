@@ -12,6 +12,11 @@ SRVEDCA means Système de Reconnaissance Vocale et Empreinte Digitale pour le Co
 # Figma Dashboard design
 - Check: https://www.figma.com/team_invite/redeem/TNdjdgWGaYzxtBlaqD77eR
 
+# Interface View After Design and Implementation
+![Capture_d_écran_2023-04-05_104018-removebg-preview](https://user-images.githubusercontent.com/99027624/230046623-d834a8ee-2194-4cbd-ae03-3d6c59242a53.png)
+![Capture_d_écran_2023-04-05_113754-removebg-preview](https://user-images.githubusercontent.com/99027624/230057653-a57e75f9-6ce5-411a-86e2-f0bc9f490b9c.png)
+![Frame 1000000917](https://user-images.githubusercontent.com/99027624/230062596-3c5eac49-dd7f-4a2c-91fc-19723838d9d3.png)
+
 # List of equipments
 - Arduino Mega
 - Voice recognition module
