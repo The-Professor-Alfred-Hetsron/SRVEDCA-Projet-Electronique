@@ -3,11 +3,13 @@ import './MainLeftSection.css'
 
 import {MainWelcomeHeader} from '../../Components'
 import {HomeControls} from '../../Components'
+import {ClassTable} from '../../Components'
+import {PlanningTable, Presences, CoursTable, TableEnrolment, TableAdmin} from '../../Components'
 
 export class MainLeftSection extends Component {
   render() {
     const pageType = this.props.page
-    console.log(pageType)
+    //console.log(pageType)
     return (
       <div className='mainLeftSection-container'>
         {pageType === "accueil" ? /*La page Accueil du Dashboard*/
@@ -22,7 +24,7 @@ export class MainLeftSection extends Component {
         (
           <div className="mainLeftSection-container-div">
             {/*Ajoute le composant de ta table ici*/}
-            Ajoute le composant de ta table Etudiant Enrolés ici
+            <TableEnrolment/>
           </div>
         ) 
         : null}
@@ -30,7 +32,7 @@ export class MainLeftSection extends Component {
         (
           <div className="mainLeftSection-container-div">
             {/*Ajoute le composant de ta table ici*/}
-            Ajoute le composant de ta table Classes ici
+            <ClassTable/>
           </div>
         ) 
         : null}
@@ -38,7 +40,7 @@ export class MainLeftSection extends Component {
         (
           <div className="mainLeftSection-container-div">
             {/*Ajoute le composant de ta table ici*/}
-            Ajoute le composant de ta table Cours ici
+            <CoursTable/>
           </div>
         ) 
         : null}
@@ -46,7 +48,7 @@ export class MainLeftSection extends Component {
         (
           <div className="mainLeftSection-container-div">
             {/*Ajoute le composant de ta table ici*/}
-            Ajoute le composant de ta table Administrateur ici
+            <TableAdmin/>
           </div>
         ) 
         : null}
@@ -54,7 +56,7 @@ export class MainLeftSection extends Component {
         (
           <div className="mainLeftSection-container-div">
             {/*Ajoute le composant de ta table ici*/}
-            Ajoute le composant de ta table Planning de Cours ici
+            <PlanningTable/>
           </div>
         ) 
         : null}
@@ -62,7 +64,7 @@ export class MainLeftSection extends Component {
         (
           <div className="mainLeftSection-container-div">
             {/*Ajoute le composant de ta table ici*/}
-            Ajoute le composant de ta table Présences ici
+            <Presences/>
           </div>
         ) 
         : null}
